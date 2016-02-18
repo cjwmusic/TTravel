@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="navBarColor">#FFFFFF</color>
+    <color name="yellowLevel1">#fea201</color>
+
+    <color name="grayLevel1">#585858</color>
+    <color name="grayLevel2">#666666</color>
+
+    <color name="tab_bg">#fafafa</color>
+    <color name="write_bg">#ffffff</color>
+
+    <color name="black">#000000</color>
+    <color name="blackLevel1">#a0000000</color>
+
+
+</resources>
