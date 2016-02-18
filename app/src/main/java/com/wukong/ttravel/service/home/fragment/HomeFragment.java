@@ -82,6 +82,7 @@ public class HomeFragment extends BaseFragment {
                 }
             });
 
+            //请求数据
             loadData();
         }
         return rootView;
@@ -89,7 +90,6 @@ public class HomeFragment extends BaseFragment {
 
 
     private void loadData() {
-
 
         HttpClient.post("Traveler/GetHotDestination", getParams(0), null, new HttpClient.HttpCallback<Object>() {
 
@@ -132,9 +132,6 @@ public class HomeFragment extends BaseFragment {
                         adapter.notifyDataSetChanged();
                     }
                 });
-
-
-
             }
 
             @Override
