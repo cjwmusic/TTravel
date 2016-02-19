@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/write_bg">
+
+    <include layout="@layout/action_bar"></include>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/album_image"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                fresco:actualImageScaleType="centerCrop"
+                fresco:placeholderImage="@drawable/home_image_placeholder"
+                />
+
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/image_avatar"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_alignBottom="@id/album_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="-28dp"
+                android:layout_marginRight="22dp"
+                fresco:roundingBorderColor="@color/write_bg"
+                fresco:roundingBorderWidth="2dp"
+                fresco:roundedCornerRadius="28dp"
+                fresco:roundAsCircle="true" />
+
+            <LinearLayout
+                android:id="@+id/name_space"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/album_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/horse"/>
+                
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="江湖刺客"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/blackLevel2"
+                    android:textSize="14dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"/>
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="14dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/car"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/name_space"
+                android:layout_marginTop="19dp"
+                android:layout_centerHorizontal="true">
+
+                <!-- 家乡 -->
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/grayLevel3"
+                        android:textSize="13dp"
+                        android:text="家乡"/>
+                    <TextView
+                        android:id="@+id/hometown"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/grayLevel2"
+                        android:textSize="15dp"
+                        android:text="浙江杭州"/>
+
+
+
+
+
+                </LinearLayout>
+
+                <!-- 职业 -->
+                <LinearLayout
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/grayLevel3"
+                        android:textSize="13dp"
+                        android:text="职业"/>
+
+                    <TextView
+                        android:id="@+id/job"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_gravity="center_horizontal"
+                        android:textColor="@color/grayLevel2"
+                        android:textSize="15dp"
+                        android:text="大四在读"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 分割线 -->
+            <ImageView
+                android:id="@+id/separate_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/profile_area"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/separate_line"/>
+
+            <!-- 一分钟了解我 -->
+            <TextView
+                android:id="@+id/konwme_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center_horizontal"
+                android:layout_below="@id/separate_line"
+                android:textColor="@color/grayLevel3"
+                android:text="一分钟了解我"/>
+
+            <TextView
+                android:id="@+id/konw_me"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/konwme_title"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="18dp"
+                android:textSize="15dp"
+                android:textColor="@color/grayLevel2"
+                android:text="拥有职业吃货的各种爱好和美食地图，能发掘各种小巷子里的经典美食"
+                />
+
+            <!-- 分割线 -->
+            <ImageView
+                android:id="@+id/separate_line2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/konw_me"
+                android:layout_marginTop="23dp"
+                android:src="@drawable/separate_line"/>
+
+            <!-- 评论 -->
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="12dp"
+                android:layout_below="@id/separate_line2"
+                android:textColor="@color/grayLevel3"
+                android:text="30条评论"
+                />
+
+            <!-- stars -->
+            <LinearLayout
+                android:id="@+id/stars"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/comment_count"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/start0"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/home_star_active"
+                    />
+
+                <ImageView
+                    android:id="@+id/start1"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/home_star_active"
+                    android:layout_marginLeft="3dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/start2"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/home_star_active"
+                    android:layout_marginLeft="3dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/start3"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/home_star_active"
+                    android:layout_marginLeft="3dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/start4"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/home_star_inactive"
+                    android:layout_marginLeft="3dp"
+                    />
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/comment_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/stars"
+                android:gravity="center_horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="18dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="这次出行很愉快，能发掘各种小巷子里的经典美食"
+                />
+
+            <Button
+                android:id="@+id/comment_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="全部评论"
+                android:textColor="@color/yellowLevel2"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/comment_txt"
+                android:background="@color/transparent"
+                android:drawableRight="@drawable/narrow_yellow"
+                android:textSize="16dp"/>
+
+
+            <!-- 线路推荐-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/comment_button"
+                android:orientation="vertical"
+                android:background="@color/gray_bg">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/blackLevel2"
+                    android:text="线路推荐"/>
+
+                <com.wukong.ttravel.Base.views.MyListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp">
+
+                </com.wukong.ttravel.Base.views.MyListView>
+
+                <!-- 可预约时间 -->
+                <RelativeLayout
+                    android:id="@+id/book_time_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/write_bg"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginLeft="20dp"
+                        android:text="可预约时间"
+                        android:textSize="16dp"
+                        android:textColor="@color/blackLevel2"/>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"
+                        android:background="@null"
+                        android:gravity="center"
+                        android:textColor="@color/yellowLevel2"
+                        android:drawableRight="@drawable/narrow_yellow"
+                        android:text="查看日期"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="44dp"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                </RelativeLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="-44dp"
+        android:background="@color/write_bg"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/contact_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginRight="0.5dp"
+            android:textSize="16dp"
+            android:textColor="@color/write_bg"
+            android:background="@color/yellowLevel1"
+            android:text="联系伴客" />
+
+        <Button
+            android:id="@+id/book_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textSize="16dp"
+            android:layout_marginLeft="0.5dp"
+            android:textColor="@color/write_bg"
+            android:background="@color/yellowLevel1"
+            android:text="立即预订"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

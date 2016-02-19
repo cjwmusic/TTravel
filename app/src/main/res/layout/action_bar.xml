@@ -49,5 +49,5 @@
         android:textColor="@color/yellowLevel2"
         android:text="•••"
         android:textSize="25dp" />
-    
+
 </RelativeLayout>
