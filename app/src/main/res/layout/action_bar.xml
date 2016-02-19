@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="@dimen/action_bar_height"
+    android:background="@color/write_bg">
+
+    <LinearLayout
+        android:id="@+id/action_bar_button_back"
+        android:layout_width="60dp"
+        android:layout_height="fill_parent"
+        android:background="@null"
+        android:gravity="center"
+        android:onClick="handleBack"
+         >
+
+        <ImageView
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:scaleType="center"
+            android:src="@drawable/back"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/action_bar_title"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/blackLevel2"
+        android:text="主页"
+        android:textSize="16dp" />
+
+    <Button
+        android:id="@+id/action_bar_button_right"
+        android:layout_width="60dp"
+        android:layout_height="fill_parent"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        android:gravity="center"
+        android:textColor="@color/yellowLevel2"
+        android:text="•••"
+        android:textSize="25dp" />
+    
+</RelativeLayout>

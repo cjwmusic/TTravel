@@ -75,9 +75,13 @@ public class HomeFragment extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                    //点击的是伴客item
                     if (listData.get(position).getClass().equals(Tailor.class)) {
                         Tailor tailor = (Tailor) listData.get(position);
                         System.out.println("wukong--->" + tailor.getMembID());
+                    } else { //点击的是城市item
+
+
                     }
                 }
             });
