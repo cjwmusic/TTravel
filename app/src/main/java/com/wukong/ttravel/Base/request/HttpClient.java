@@ -96,7 +96,7 @@ public class HttpClient {
                 builder.addFormDataPart(key,value);
             }
         }
-        
+
         RequestBody body = builder.build();
 
         Request request = new Request.Builder().
@@ -238,8 +238,8 @@ public class HttpClient {
                      * 服务端失败
                      */
                     else {
-                        int code = json.getInteger("code");
-                        String msg = json.getString("msg");
+                        int code = json.getInteger("Result");
+                        String msg = json.getString("Message");
                         HttpError error = new HttpError(code, msg);
                         result.success = false;
                         result.error = error;

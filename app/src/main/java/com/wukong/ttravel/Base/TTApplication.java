@@ -3,7 +3,9 @@ package com.wukong.ttravel.Base;
 import android.app.Application;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
+import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 
 /**
  * Created by wukong on 2/18/16.
@@ -20,6 +22,20 @@ public class TTApplication  extends Application{
         HttpClient.init();
 
         Fresco.initialize(context);
+
+        setupRouter();
+
+
+    }
+
+    private void setupRouter() {
+
+        Router.sharedRouter().setContext(getApplicationContext());
+
+        /**
+         * Maps
+         */
+        Router.sharedRouter().map("tailorIndex/:id", TailorIndexActivity.class); // for push
 
 
     }

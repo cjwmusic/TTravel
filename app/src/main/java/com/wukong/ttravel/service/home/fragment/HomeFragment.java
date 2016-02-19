@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.wukong.ttravel.Base.BaseFragment;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
@@ -78,7 +79,9 @@ public class HomeFragment extends BaseFragment {
                     //点击的是伴客item
                     if (listData.get(position).getClass().equals(Tailor.class)) {
                         Tailor tailor = (Tailor) listData.get(position);
-                        System.out.println("wukong--->" + tailor.getMembID());
+
+                        Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
+
                     } else { //点击的是城市item
 
 
