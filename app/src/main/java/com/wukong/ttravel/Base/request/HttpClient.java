@@ -25,7 +25,9 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URLEncoder;
 import java.net.UnknownHostException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 
@@ -84,8 +86,17 @@ public class HttpClient {
         String reqUrl = genAbsoluteUrl(path);
 
         MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
-        if (params != null)
-            builder.addFormDataPart("data", params.toString());
+
+        if (params != null) {
+            Set<String> keys = params.keySet();
+            Iterator<String> it = keys.iterator();
+            while (it.hasNext()) {
+                String key = it.next();
+                String value = params.getString(key);
+                builder.addFormDataPart(key,value);
+            }
+        }
+        
         RequestBody body = builder.build();
 
         Request request = new Request.Builder().
@@ -207,7 +218,7 @@ public class HttpClient {
                      */
                     if (success == 1) {
                         result.success = true;
-                        Object data = json.get("List");
+                        Object data = json;
                         if (clazz == null) {    // 不需要解析，由调用方自己处理
                             result.data = data;
                         } else {

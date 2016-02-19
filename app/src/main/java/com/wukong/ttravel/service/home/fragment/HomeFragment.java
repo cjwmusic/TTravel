@@ -100,7 +100,9 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onSuccess(Object obj) {
 
-                JSONArray jsonArray = (JSONArray)obj;
+                JSONObject data = (JSONObject)obj;
+
+                JSONArray jsonArray = (JSONArray)data.get("List");
 
                 for (int i = 0; i < jsonArray.size();i ++) {
                     JSONObject jsonObject = (JSONObject)jsonArray.get(i);
@@ -117,7 +119,9 @@ public class HomeFragment extends BaseFragment {
                     @Override
                     public void onSuccess(Object obj) {
 
-                        JSONArray jsonArray = (JSONArray)obj;
+                        JSONObject data = (JSONObject)obj;
+
+                        JSONArray jsonArray = (JSONArray)data.get("List");
 
                         for (int i = 0; i < jsonArray.size();i ++) {
                             JSONObject jsonObject = (JSONObject)jsonArray.get(i);
