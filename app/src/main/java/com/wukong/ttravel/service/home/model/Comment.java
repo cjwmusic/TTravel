@@ -19,7 +19,7 @@ public class Comment {
 
     public Comment(JSONObject jsonObject) {
         nickName = jsonObject.getString("TravelerNickname");
-        avatar = jsonObject.getString("TravelerPhoto");
+        avatar = "http://apptt.traveltailor.cn" +  jsonObject.getString("TravelerPhoto");
         commentContent = jsonObject.getString("EvalContent");
         commentTime = jsonObject.getString("EvalCreate");
         score = jsonObject.getInteger("EvalScore");

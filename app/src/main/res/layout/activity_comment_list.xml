@@ -6,10 +6,13 @@
 
     <include layout="@layout/action_bar"></include>
 
+
+
     <ListView
         android:id="@+id/comment_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/gray_bg2"></ListView>
+        android:background="@color/gray_bg2"
+        ></ListView>
 
 </LinearLayout>

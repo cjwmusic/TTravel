@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.Base.views.MyListView;
@@ -139,10 +140,12 @@ public class TailorIndexActivity extends Activity{
 
     private void updateUI(TailorDetail tailorDetail) {
 
-        albumImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
+//        albumImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
 
-        avatarImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
-//        avatarImageView.setImageURI(Uri.parse("http://app.traveltailor.cn" + tailorDetail.getMembPhoto()));
+        albumImageView.setImageURI(Uri.parse("http://apptt.traveltailor.cn" + tailorDetail.getMembAlbum()[0]));
+//        avatarImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
+        avatarImageView.setImageURI(Uri.parse(tailorDetail.getMembPhoto()));
+
         nickName.setText(tailorDetail.getMembNickName());
         homeTown.setText(tailorDetail.getMembHomeTown());
         job.setText(tailorDetail.getMembOccupation());
@@ -155,9 +158,7 @@ public class TailorIndexActivity extends Activity{
             commentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    System.out.println("wukong Debug " + "点击了全部评论");
-
+                    Router.sharedRouter().open("commentList/" + tailorId);
                 }
             });
         } else {

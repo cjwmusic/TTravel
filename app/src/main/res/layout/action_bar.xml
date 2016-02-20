@@ -50,4 +50,10 @@
         android:text="•••"
         android:textSize="25dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@id/action_bar_button_right"
+        android:background="@color/gray_bg"/>
+
 </RelativeLayout>

@@ -15,10 +15,11 @@ public class DestCity {
 
     public DestCity(JSONObject jsonObject) {
 
+
         destId = jsonObject.getString("DestID");
         destCityName = jsonObject.getString("DestCityName");
         destCityPinyin = jsonObject.getString("DestCityPinyin");
-        destCityPicture = jsonObject.getString("DestCityPicture");
+        destCityPicture = "http://apptt.traveltailor.cn" + jsonObject.getString("DestCityPicture");
 
     }
 

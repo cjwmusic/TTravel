@@ -79,7 +79,6 @@ public class HomeFragment extends BaseFragment {
                     //点击的是伴客item
                     if (listData.get(position).getClass().equals(Tailor.class)) {
                         Tailor tailor = (Tailor) listData.get(position);
-
                         Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
 
                     } else { //点击的是城市item
