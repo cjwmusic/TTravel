@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.model.Comment;
 
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class CommentListAdapter extends BaseAdapter {
         }
 
         Comment comment = mData.get(position);
-        holder.avatar.setImageURI(Uri.parse(comment.getAvatar()));
+        holder.avatar.setImageURI(ImgUtil.getCDNUrlWithPathStr(comment.getAvatar()));
         holder.nickName.setText(comment.getNickName());
         holder.commentContent.setText(comment.getCommentContent());
         holder.commentTime.setText(comment.getCommentTime());

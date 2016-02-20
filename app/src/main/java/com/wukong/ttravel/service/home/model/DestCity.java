@@ -19,7 +19,7 @@ public class DestCity {
         destId = jsonObject.getString("DestID");
         destCityName = jsonObject.getString("DestCityName");
         destCityPinyin = jsonObject.getString("DestCityPinyin");
-        destCityPicture = "http://apptt.traveltailor.cn" + jsonObject.getString("DestCityPicture");
+        destCityPicture = jsonObject.getString("DestCityPicture");
 
     }
 

@@ -18,6 +18,7 @@ import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.Base.views.MyListView;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.model.TailorDetail;
 
 
@@ -140,11 +141,8 @@ public class TailorIndexActivity extends Activity{
 
     private void updateUI(TailorDetail tailorDetail) {
 
-//        albumImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
-
-        albumImageView.setImageURI(Uri.parse("http://apptt.traveltailor.cn" + tailorDetail.getMembAlbum()[0]));
-//        avatarImageView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
-        avatarImageView.setImageURI(Uri.parse(tailorDetail.getMembPhoto()));
+        albumImageView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailorDetail.getMembAlbum()[0]));
+        avatarImageView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailorDetail.getMembPhoto()));
 
         nickName.setText(tailorDetail.getMembNickName());
         homeTown.setText(tailorDetail.getMembHomeTown());

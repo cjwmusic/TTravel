@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.model.DestCity;
 import com.wukong.ttravel.service.home.model.Tailor;
 
@@ -74,13 +75,11 @@ public class TailorsAdapter extends BaseAdapter{
             ViewHolder holder = (ViewHolder)tag.get("holder");
 
             Tailor tailor = (Tailor) item;
-//            holder.albumView.setImageURI(Uri.parse("http://img0.ph.126.net/4H55KARi1LT65MNJ_bjPTw==/6631294265099273757.jpg"));
-            holder.albumView.setImageURI(Uri.parse(tailor.getMembAlbum()));
+            holder.albumView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailor.getMembAlbum()));
             holder.prodName.setText(tailor.getProdName());
             holder.nickName.setText(tailor.getMembNickName());
             holder.order.setText("成交量" + tailor.getMembOrder());
-//            holder.avatar.setImageURI(Uri.parse("http://img0.ph.126.net/4H55KARi1LT65MNJ_bjPTw==/6631294265099273757.jpg"));
-            holder.avatar.setImageURI(Uri.parse(tailor.getMembPhoto()));
+            holder.avatar.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailor.getMembPhoto()));
             holder.price.setText("￥" + tailor.getProdMinPrice() + "~" + tailor.getProdMaxPrice());
 
             setStars(holder, tailor.getMembScore());
@@ -92,8 +91,7 @@ public class TailorsAdapter extends BaseAdapter{
             CityViewHolder cityViewHolder = (CityViewHolder)tag.get("holder");
 
             DestCity destCity = (DestCity) item;
-//            cityViewHolder.albumView.setImageURI(Uri.parse("http://img1.ph.126.net/CUw1qGDq-BbSK9KGhWhKLg==/3747557840026058971.jpg"));
-            cityViewHolder.albumView.setImageURI(Uri.parse(destCity.getDestCityPicture()));
+            cityViewHolder.albumView.setImageURI(ImgUtil.getCDNUrlWithPathStr(destCity.getDestCityPicture()));
             cityViewHolder.cityName.setText(destCity.getDestCityName());
             //设置搜索栏是否显示
             if (destCity.isFirst()) {
@@ -101,7 +99,6 @@ public class TailorsAdapter extends BaseAdapter{
             } else {
                 cityViewHolder.searchBar.setVisibility(View.GONE);
             }
-
         }
 
         return convertView;

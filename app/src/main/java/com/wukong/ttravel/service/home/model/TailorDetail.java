@@ -27,7 +27,7 @@ public class TailorDetail {
     public TailorDetail(JSONObject jsonObject) {
 
         membId = jsonObject.getString("MembID");
-        membPhoto = "http://apptt.traveltailor.cn" + jsonObject.getString("MembPhoto");
+        membPhoto = jsonObject.getString("MembPhoto");
         membNickName = jsonObject.getString("MembNickname");
 
        // membAlbum 待处理

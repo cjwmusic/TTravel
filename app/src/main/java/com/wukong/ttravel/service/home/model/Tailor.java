@@ -16,8 +16,8 @@ public class Tailor {
 
     public Tailor(JSONObject jsonObject) {
         membID = jsonObject.getString("MembID");
-        membPhoto = "http://apptt.traveltailor.cn" + jsonObject.getString("MembPhoto");
-        membAlbum = "http://apptt.traveltailor.cn" + jsonObject.getString("MembAlbum");
+        membPhoto = jsonObject.getString("MembPhoto");
+        membAlbum = jsonObject.getString("MembAlbum");
         membNickName = jsonObject.getString("MembNickname");
         prodName = jsonObject.getString("ProdName");
         prodMinPrice = jsonObject.getString("ProdMinPrice");
