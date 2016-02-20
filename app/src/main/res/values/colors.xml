@@ -11,6 +11,7 @@
     <color name="navBarColor">#FFFFFF</color>
 
     <color name="gray_bg">#ededed</color>
+    <color name="gray_bg2">#f7f7f7</color>
     <color name="grayLevel1">#585858</color>
     <color name="grayLevel2">#666666</color>
     <color name="grayLevel3">#aaaaaa</color>

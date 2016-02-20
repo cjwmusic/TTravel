@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
-import com.wukong.widget.TabManager;
+import com.wukong.ttravel.widget.TabManager;
 
 public class MainActivity extends AppCompatActivity {
 
