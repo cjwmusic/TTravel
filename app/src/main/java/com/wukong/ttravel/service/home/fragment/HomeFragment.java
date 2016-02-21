@@ -34,7 +34,6 @@ import butterknife.ButterKnife;
  */
 public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
-
     private View rootView;
     private View listFooter;
     private TextView footerMessage;
@@ -43,7 +42,6 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private ArrayList listData;
     private TailorsAdapter adapter;
-
 
     @Bind(R.id.listView)
     ListView listView;
@@ -82,7 +80,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
 
                     } else { //点击的是城市item
-                        
+
                     }
                 }
             });

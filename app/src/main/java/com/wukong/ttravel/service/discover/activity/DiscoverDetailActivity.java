@@ -2,6 +2,7 @@ package com.wukong.ttravel.service.discover.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.TextView;
 
@@ -32,6 +33,10 @@ public class DiscoverDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_discover_detail);
         ButterKnife.bind(this);
+
+        WebSettings settings = webView.getSettings();
+        settings.setUseWideViewPort(true);
+        settings.setLoadWithOverviewMode(true);
 
         Bundle extras = getIntent().getExtras();
         strFoundID = extras.getString("id");

@@ -40,6 +40,9 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
     @Bind(R.id.listView)
     ListView listView;
 
+    @Bind(R.id.mSwipeRefreshLayout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +64,8 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
                 }
             });
 
+            mSwipeRefreshLayout.setOnRefreshListener(this);
+
             showProgressDialog("正在加载");
             loadData();
         }
@@ -72,11 +77,15 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
         HttpClient.post("Traveler/GetFoundList", getParams(0), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
-                JSONObject data = (JSONObject)obj;
-                JSONArray jsonArray = (JSONArray)data.get("List");
+                mSwipeRefreshLayout.setRefreshing(false);
 
-                for (int i = 0; i < jsonArray.size();i ++) {
-                    JSONObject jsonObject = (JSONObject)jsonArray.get(i);
+                listData.clear();
+
+                JSONObject data = (JSONObject) obj;
+                JSONArray jsonArray = (JSONArray) data.get("List");
+
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                     DiscoverItem discoverItem = new DiscoverItem(jsonObject);
                     listData.add(discoverItem);
                 }
@@ -87,6 +96,7 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
 
             @Override
             public void onFail(HttpError error) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 hideProgressDialog();
             }
         });
@@ -109,7 +119,7 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
 
     @Override
     public void onRefresh() {
-
+        loadData();
     }
 
 
