@@ -1,6 +1,5 @@
 package com.wukong.ttravel.service.home.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -8,6 +7,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wukong on 2/20/16.
  */
-public class CommentListActivity extends Activity {
+public class CommentListActivity extends BaseActivity {
 
     @Bind(R.id.action_bar_title)
     TextView actionBarTitle;
@@ -49,6 +49,8 @@ public class CommentListActivity extends Activity {
         adapter = new CommentListAdapter(this,listData);
         listView.setAdapter(adapter);
 
+        showProgressDialog("正在加载...");
+
         loadData();
     }
 
@@ -57,6 +59,9 @@ public class CommentListActivity extends Activity {
         HttpClient.post("Traveler/GetEvaluationToTailor", getParams(), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
+
+                hideProgressDialog();
+
                 JSONObject data = (JSONObject) obj;
                 JSONArray jsonArray = (JSONArray) data.get("List");
                 for (int i = 0; i < jsonArray.size(); i++) {
@@ -69,7 +74,7 @@ public class CommentListActivity extends Activity {
 
             @Override
             public void onFail(HttpError error) {
-
+                hideProgressDialog();
             }
         });
     }

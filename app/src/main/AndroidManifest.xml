@@ -30,7 +30,7 @@
 
         <activity android:name=".service.home.activity.TailorIndexActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".service.home.activity.CommentListActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
-
+        <activity android:name=".service.discover.activity.DiscoverDetailActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
     </application>
 

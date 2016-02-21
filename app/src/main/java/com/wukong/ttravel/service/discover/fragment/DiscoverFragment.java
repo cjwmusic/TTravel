@@ -1,23 +1,25 @@
 package com.wukong.ttravel.service.discover.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.Base.BaseFragment;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.MessageUtils;
 import com.wukong.ttravel.service.discover.adapter.DiscoverAdapter;
 import com.wukong.ttravel.service.discover.model.DiscoverItem;
-import com.wukong.ttravel.service.home.model.DestCity;
 
 import java.util.ArrayList;
 
@@ -34,6 +36,7 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
     private DiscoverAdapter adapter;
     private ArrayList<DiscoverItem> listData;
 
+
     @Bind(R.id.listView)
     ListView listView;
 
@@ -49,12 +52,19 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
             adapter = new DiscoverAdapter(getActivity(),listData);
             listView.setAdapter(adapter);
 
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                    DiscoverItem discoverItem = listData.get(position);
+                    Router.sharedRouter().open("discoverDetail/" + discoverItem.getFounId() + "/" + discoverItem.getFounTitle());
+                }
+            });
+
+            showProgressDialog("正在加载");
             loadData();
-
         }
-
         return rootView;
-
     }
 
     private void loadData(){
@@ -71,12 +81,13 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
                     listData.add(discoverItem);
                 }
 
+                hideProgressDialog();
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onFail(HttpError error) {
-
+                hideProgressDialog();
             }
         });
 
@@ -100,4 +111,7 @@ public class DiscoverFragment extends BaseFragment implements SwipeRefreshLayout
     public void onRefresh() {
 
     }
+
+
+
 }

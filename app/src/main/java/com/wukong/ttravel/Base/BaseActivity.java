@@ -13,9 +13,6 @@ public class BaseActivity extends Activity {
 
     private ProgressDialog progressDialog; //加载的进度条
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +40,6 @@ public class BaseActivity extends Activity {
             progressDialog.show();
         }
     }
-
 
     public synchronized void hideProgressDialog() {
         if (progressDialog != null && progressDialog.isShowing()) {

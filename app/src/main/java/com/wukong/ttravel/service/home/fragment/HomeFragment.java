@@ -82,8 +82,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
 
                     } else { //点击的是城市item
-
-
+                        
                     }
                 }
             });
@@ -92,6 +91,7 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 //            mSwipeRefreshLayout.setVisibility(View.GONE);
 //            mSwipeRefreshLayout.setEnabled(false);
             mSwipeRefreshLayout.setOnRefreshListener(this);
+            showProgressDialog("正在加载...");
             //请求数据
             loadData();
         }
@@ -101,12 +101,15 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void loadData() {
 
-        listData.clear();
 
         HttpClient.post("Traveler/GetHotDestination", getParams(0), null, new HttpClient.HttpCallback<Object>() {
 
             @Override
             public void onSuccess(Object obj) {
+
+                listData.clear();
+
+                hideProgressDialog();
 
                 JSONObject data = (JSONObject)obj;
 
@@ -127,6 +130,8 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                     @Override
                     public void onSuccess(Object obj) {
 
+                        hideProgressDialog();
+
                         JSONObject data = (JSONObject)obj;
 
                         JSONArray jsonArray = (JSONArray)data.get("List");
@@ -145,6 +150,8 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
                     @Override
                     public void onFail(HttpError error) {
+
+                        hideProgressDialog();
 
                         mSwipeRefreshLayout.setRefreshing(false);
 

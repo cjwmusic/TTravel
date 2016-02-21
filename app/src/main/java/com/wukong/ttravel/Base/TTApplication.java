@@ -5,6 +5,7 @@ import android.app.Application;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
+import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 
@@ -38,6 +39,7 @@ public class TTApplication  extends Application{
          */
         Router.sharedRouter().map("tailorIndex/:id", TailorIndexActivity.class);
         Router.sharedRouter().map("commentList/:id", CommentListActivity.class);
+        Router.sharedRouter().map("discoverDetail/:id/:title", DiscoverDetailActivity.class);
 
 
     }
