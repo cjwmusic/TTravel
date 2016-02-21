@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
@@ -28,7 +30,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wukong on 2/19/16.
  */
-public class TailorIndexActivity extends Activity{
+public class TailorIndexActivity extends BaseActivity{
 
     private String tailorId;
 
@@ -99,6 +101,7 @@ public class TailorIndexActivity extends Activity{
         tailorId = extras.getString("id");
 
 
+        showProgressDialog("正在加载");
 
         loadData();
     }
@@ -111,6 +114,7 @@ public class TailorIndexActivity extends Activity{
                 JSONObject data = (JSONObject) obj;
                 JSONObject model = data.getJSONObject("Model");
                 if (model != null) {
+                    hideProgressDialog();
                     TailorDetail tailorDetail = new TailorDetail(model);
                     updateUI(tailorDetail);
                 }
