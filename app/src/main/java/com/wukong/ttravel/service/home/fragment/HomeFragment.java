@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wukong on 16/2/17.
  */
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     private View rootView;
@@ -88,6 +88,10 @@ public class HomeFragment extends BaseFragment {
                 }
             });
 
+            //下拉刷新
+//            mSwipeRefreshLayout.setVisibility(View.GONE);
+//            mSwipeRefreshLayout.setEnabled(false);
+            mSwipeRefreshLayout.setOnRefreshListener(this);
             //请求数据
             loadData();
         }
@@ -96,6 +100,8 @@ public class HomeFragment extends BaseFragment {
 
 
     private void loadData() {
+
+        listData.clear();
 
         HttpClient.post("Traveler/GetHotDestination", getParams(0), null, new HttpClient.HttpCallback<Object>() {
 
@@ -133,20 +139,25 @@ public class HomeFragment extends BaseFragment {
 
                         //刷新listView
                         adapter.notifyDataSetChanged();
+                        mSwipeRefreshLayout.setRefreshing(false);
+
                     }
 
                     @Override
                     public void onFail(HttpError error) {
 
+                        mSwipeRefreshLayout.setRefreshing(false);
+
                         //刷新listView
-                        adapter.notifyDataSetChanged();
+//                        adapter.notifyDataSetChanged();
                     }
                 });
             }
 
             @Override
             public void onFail(HttpError error) {
-                System.out.println("Traveler is " + error);
+
+                mSwipeRefreshLayout.setRefreshing(false);
 
             }
         });
@@ -166,4 +177,8 @@ public class HomeFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void onRefresh() {
+        loadData();
+    }
 }
