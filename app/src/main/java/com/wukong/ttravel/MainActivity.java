@@ -9,6 +9,7 @@ import android.widget.TabHost;
 
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
+import com.wukong.ttravel.service.order.fragment.OrderFragment;
 import com.wukong.ttravel.widget.TabManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //设置tabItem
         mTabManager.addTab(getTabSpecView("home", R.layout.tab_item_home), HomeFragment.class, null);
         mTabManager.addTab(getTabSpecView("discover", R.layout.tab_item_discover), DiscoverFragment.class, null);
-        mTabManager.addTab(getTabSpecView("order", R.layout.tab_item_order), HomeFragment.class, null);
+        mTabManager.addTab(getTabSpecView("order", R.layout.tab_item_order), OrderFragment.class, null);
         mTabManager.addTab(getTabSpecView("message", R.layout.tab_item_message), HomeFragment.class, null);
         mTabManager.addTab(getTabSpecView("my", R.layout.tab_item_my), HomeFragment.class, null);
 

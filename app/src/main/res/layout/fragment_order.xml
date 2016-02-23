@@ -13,7 +13,7 @@
         android:singleLine="true"
         android:textColor="@color/blackLevel2"
         android:textSize="16dp"
-        android:text="发现"/>
+        android:text="订单"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -27,6 +27,12 @@
         android:layout_height="42dp"
         android:background="@null"
         android:gravity="center_vertical"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_bg"/>
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/categoryTabViewPager"

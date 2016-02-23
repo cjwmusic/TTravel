@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/write_bg">
+
+        <!-- 头像 -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_avatar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="15dp"
+            fresco:roundedCornerRadius="15dp"
+            fresco:roundAsCircle="true" />
+
+        <TextView
+            android:id="@+id/nick_name"
+            android:layout_width="100dp"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:singleLine="true"
+            android:layout_toRightOf="@id/image_avatar"
+            android:layout_marginLeft="10dp"
+            android:textSize="16dp"
+            android:textColor="@color/blackLevel2"
+            android:text="西北帅气少年"/>
+
+
+        <TextView
+            android:id="@+id/order_status"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/nick_name"
+            android:layout_marginLeft="10dp"
+            android:layout_alignTop="@id/nick_name"
+            android:textSize="12dp"
+            android:textColor="@color/grayLevel4"
+            android:text="未完成"
+            />
+        <Button
+            android:id="@+id/comment_button"
+            android:layout_width="48dp"
+            android:layout_height="24dp"
+            android:background="@drawable/button_style1"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="15dp"
+            android:textSize="11sp"
+            android:text="评价"
+            android:gravity="center"
+            android:textColor="@color/yellowLevel1"
+            android:layout_alignParentRight="true"
+            />
+
+        <TextView
+            android:id="@+id/separate_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/nick_name"
+            android:layout_alignLeft="@id/nick_name"
+            android:background="@color/gray_bg"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/separate_line"
+            android:layout_alignLeft="@id/separate_line">
+
+            <Button
+                android:id="@+id/detail_button"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:textSize="15sp"
+                android:textColor="@color/grayLevel4"
+                android:text="查看详情"
+                android:textStyle="normal"
+                android:drawableRight="@drawable/narrow_gray"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"
+                android:background="@color/transparent"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/detail_button"
+                android:orientation="vertical"
+                android:layout_centerVertical="true"
+                >
+                
+                <TextView
+                    android:id="@+id/service_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:textColor="@color/grayLevel2"
+                    android:singleLine="true"
+                    android:text="西湖陪跑一圈"
+                    />
+
+                <TextView
+                    android:id="@+id/order_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textSize="10sp"
+                    android:textColor="@color/grayLevel2"
+                    android:text="2016-02-24 13:45"
+                    />
+
+
+            </LinearLayout>
+
+
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

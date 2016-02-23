@@ -36,19 +36,22 @@ public class OrderFragment extends BaseFragment implements  ViewPager.OnPageChan
             rootView = inflater.inflate(R.layout.fragment_order,container,false);
 
             ButterKnife.bind(this, rootView);
-            //init tab
-            categorySlidingTab.setCustomTabView(R.layout.item_category, R.id.categoryName);
-            categorySlidingTab.setSelectedIndicatorColors(getResources().getColor(R.color.brand));
-            categorySlidingTab.setViewPager(categoryTabViewPager);
-            categorySlidingTab.setDividerColors(android.R.color.transparent);
-            categorySlidingTab.setOnPageChangeListener(this);
 
+            //未完成、已完成的Tab
+            categoryPagerAdapter = new FragmentTabAdapter(getActivity().getSupportFragmentManager());
             categoryPagerAdapter.clear();
-            categoryPagerAdapter.addFragment(OrderListFragment.newInstance("123232"));
+            categoryPagerAdapter.addFragment(OrderListFragment.newInstance("未完成订单","123232"));
+            categoryPagerAdapter.addFragment(OrderListFragment.newInstance("已完成订单","123232"));
 
             categoryTabViewPager.setAdapter(categoryPagerAdapter);
             categoryPagerAdapter.notifyDataSetChanged();
 
+            categorySlidingTab.setCustomTabView(R.layout.item_category, R.id.categoryName);
+            categorySlidingTab.setSelectedIndicatorColors(getResources().getColor(R.color.yellowLevel1));
+            categorySlidingTab.setViewPager(categoryTabViewPager);
+
+            categorySlidingTab.setDividerColors(android.R.color.transparent);
+            categorySlidingTab.setOnPageChangeListener(this);
 
         }
 
@@ -63,11 +66,12 @@ public class OrderFragment extends BaseFragment implements  ViewPager.OnPageChan
 
     @Override
     public void onPageSelected(int position) {
+        System.out.println("onPageSelected::" + position);
 
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
+        System.out.println("onPageScrollStateChanged::" + state);
     }
 }
