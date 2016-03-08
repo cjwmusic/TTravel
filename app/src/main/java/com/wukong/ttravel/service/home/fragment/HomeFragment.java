@@ -77,8 +77,9 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                     //点击的是伴客item
                     if (listData.get(position).getClass().equals(Tailor.class)) {
                         Tailor tailor = (Tailor) listData.get(position);
-                        Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
+//                        Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
 
+                        Router.sharedRouter().open("chat/" + "20160119001");
                     } else { //点击的是城市item
 
                     }

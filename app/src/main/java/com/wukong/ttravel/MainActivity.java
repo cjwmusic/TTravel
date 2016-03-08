@@ -2,11 +2,15 @@ package com.wukong.ttravel;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 
+import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.SaveCallback;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.order.fragment.OrderFragment;
@@ -22,7 +26,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initTabHost();
+        leanCloudTest();
     }
+
+    //测试LeanCloud是否工作正常
+    private void leanCloudTest() {
+        // 测试 SDK 是否正常工作的代码
+        AVObject testObject = new AVObject("AndroidTestObject");
+        testObject.put("words","Hello World!");
+        testObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(AVException e) {
+                if(e == null){
+                    Log.d("leanCloudTest----saved", "success!");
+                }
+            }
+        });
+
+    }
+
 
     //初始化TabHost
     private void initTabHost() {

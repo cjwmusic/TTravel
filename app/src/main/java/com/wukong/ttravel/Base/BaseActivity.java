@@ -3,6 +3,7 @@ package com.wukong.ttravel.Base;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.wukong.ttravel.Utils.MessageUtils;
 
@@ -23,6 +24,20 @@ public class BaseActivity extends Activity {
     public void onStop() {
         super.onStop();
 
+    }
+
+    protected boolean filterException(Exception e) {
+        if (e != null) {
+            e.printStackTrace();
+            toast(e.getMessage());
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    protected void toast(String str) {
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
 

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="150dp"
+    android:layout_gravity="center"
+    android:background="@drawable/chat_voice_dialog_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        >
+
+        <TextView
+            android:id="@+id/voice_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="声音图片"
+            android:textColor="@color/write_bg"
+            android:textSize="40dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/volume_group"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/volume_8"
+                android:layout_width="19dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_7"
+                android:layout_width="17dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_6"
+                android:layout_width="15dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_5"
+                android:layout_width="13dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_4"
+                android:layout_width="11dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_3"
+                android:layout_width="9dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_2"
+                android:layout_width="7dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+            <TextView
+                android:id="@+id/volume_1"
+                android:layout_width="5dp"
+                android:layout_height="2dp"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/record_dialog_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="14dp"
+        android:layout_marginTop="20dp"
+        />
+
+</LinearLayout>

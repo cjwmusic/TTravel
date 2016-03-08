@@ -6,5 +6,13 @@
 
     <dimen name="action_bar_height">44dp</dimen>
 
+    <dimen name="chat_icon_size">30dp</dimen>
+    <dimen name="chat_expression_icon_size">27dp</dimen>
+    <dimen name="chat_icon_text_size">18dp</dimen>
+    <dimen name="chat_attach_item_icon_text_size">40dp</dimen>
+    <dimen name="chat_icon_border_thickness">1px</dimen>
+
+    <dimen name="font_size">14sp</dimen>
+
 
 </resources>
