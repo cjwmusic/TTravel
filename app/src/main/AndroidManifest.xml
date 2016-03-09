@@ -29,11 +29,7 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -42,10 +38,22 @@
         <activity android:name=".service.discover.activity.DiscoverDetailActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
-        <activity android:name=".service.message.activity.ChatActivity" android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".service.message.activity.ChatActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity android:name=".service.login.activity.LoginActivity" android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+
+        <activity android:name=".service.login.activity.FastLoginActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".service.login.activity.ResetPasswordActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".service.login.activity.RegisterActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".service.login.activity.UserProtocolActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+
 
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
         <service android:name="com.avos.avoscloud.PushService"/>

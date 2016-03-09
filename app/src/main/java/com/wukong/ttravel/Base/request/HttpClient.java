@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 public class HttpClient {
 
     public static final String BASE_URL_RELEASE = "http://App.traveltailor.cn/";
+    public static final String BASE_URL_LOGIN = "http://AppLogin.traveltailor.cn/";
     public static final String BASE_URL_PRE = "";
     public static final String BASE_URL_DEV = "";
 
@@ -80,6 +81,36 @@ public class HttpClient {
             throw new RuntimeException(e);  // dont arrive, so throw exception
         }
     }
+
+    public static <T, P> void postLogin(String path, JSONObject params, Class<T> clazz, HttpCallback<P> callback) {
+
+        String reqUrl = getLoginAbsoluteUrl(path);
+
+        MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
+
+        if (params != null) {
+            Set<String> keys = params.keySet();
+            Iterator<String> it = keys.iterator();
+            while (it.hasNext()) {
+                String key = it.next();
+                String value = params.getString(key);
+                builder.addFormDataPart(key,value);
+            }
+        }
+
+        RequestBody body = builder.build();
+
+        Request request = new Request.Builder().
+                url(reqUrl).
+                post(body).
+                headers(genHeaders(reqUrl)).
+                cacheControl(CacheControl.FORCE_NETWORK).
+                build();
+
+        okHttpClient.newCall(request).enqueue(getHttpResponseHandler(path, callback, clazz));
+    }
+
+
 
     public static <T, P> void post(String path, JSONObject params, Class<T> clazz, HttpCallback<P> callback) {
 
@@ -316,6 +347,12 @@ public class HttpClient {
         Headers headers = new Headers.Builder().add("X-AppId", "2").build();
         return headers;
 //        return null;
+    }
+
+    public static String getLoginAbsoluteUrl(String path) {
+
+        return BASE_URL_LOGIN + path;
+
     }
 
     public static String genAbsoluteUrl(String path) {

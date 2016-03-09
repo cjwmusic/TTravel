@@ -92,7 +92,6 @@ public class ChatActivity extends BaseActivity implements ChatAdapter.MsgClickLi
         }
     }
 
-
     /**
      * 根据对方的Id获取 conversatio对象
      * 为了避免重复的创建，此处先 query 是否已经存在只包含该 member 的 conversation

@@ -6,6 +6,7 @@ import android.text.style.AbsoluteSizeSpan;
 import android.text.style.ForegroundColorSpan;
 
 import java.math.BigDecimal;
+import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;

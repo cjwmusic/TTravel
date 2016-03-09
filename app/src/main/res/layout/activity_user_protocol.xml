@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- navBar -->
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/write_bg">
+        <LinearLayout
+            android:id="@+id/action_bar_button_back"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:onClick="handleBack"
+            >
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:scaleType="center"
+                android:src="@drawable/back"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blackLevel2"
+            android:text="用户协议"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/action_bar_title"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <!-- webView -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </WebView>
+
+
+</LinearLayout>
