@@ -52,7 +52,7 @@ public class ContactListAdapter extends BaseAdapter {
         ViewHolder holder;
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = mLayoutInflater.inflate(R.layout.comment_item, parent, false);
+            convertView = mLayoutInflater.inflate(R.layout.contact_item, parent, false);
             holder.avatar = (SimpleDraweeView)convertView.findViewById(R.id.image_avatar);
             holder.nickName = (TextView)convertView.findViewById(R.id.nick_name);
             holder.commentTime = (TextView)convertView.findViewById(R.id.comment_time);

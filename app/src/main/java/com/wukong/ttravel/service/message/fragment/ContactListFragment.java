@@ -88,8 +88,10 @@ public class ContactListFragment extends BaseFragment implements SwipeRefreshLay
         HttpClient.post("Member/GetLinkmanList", getParams(0), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
-
                 dismissSvHud();
+                mSwipeRefreshLayout.setRefreshing(false);
+                listData.clear();
+
                 JSONObject data = (JSONObject) obj;
                 JSONArray jsonArray = (JSONArray) data.get("List");
                 for (int i = 0; i < jsonArray.size(); i++) {
@@ -102,6 +104,7 @@ public class ContactListFragment extends BaseFragment implements SwipeRefreshLay
 
             @Override
             public void onFail(HttpError error) {
+                mSwipeRefreshLayout.setRefreshing(false);
                 showError(error.getMessage());
             }
         });

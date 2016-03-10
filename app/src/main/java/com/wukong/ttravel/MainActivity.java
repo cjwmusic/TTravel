@@ -11,6 +11,7 @@ import android.widget.TabHost;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.message.fragment.ContactListFragment;
@@ -27,7 +28,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initTabHost();
-        leanCloudTest();
+
+        //slideMenu
+//        SlideMenu slideMenu = new  SlideMenu();
+        SlidingMenu slidingMenu = new SlidingMenu();
+
     }
 
     //测试LeanCloud是否工作正常

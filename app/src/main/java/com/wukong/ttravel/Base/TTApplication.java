@@ -109,14 +109,14 @@ public class TTApplication  extends Application{
     //通过IM发送消息
     private void sendMessage(AVIMConversation imConversation, String msg) {
 
-        AVIMTextMessage message = new AVIMTextMessage();
-        message.setText(msg);
-        imConversation.sendMessage(message, new AVIMConversationCallback() {
-            @Override
-            public void done(AVIMException e) {
-                System.out.println("发送消息成功");
-            }
-        });
+//        AVIMTextMessage message = new AVIMTextMessage();
+//        message.setText(msg);
+//        imConversation.sendMessage(message, new AVIMConversationCallback() {
+//            @Override
+//            public void done(AVIMException e) {
+//                System.out.println("发送消息成功");
+//            }
+//        });
     }
 
     protected boolean filterException(Exception e) {
