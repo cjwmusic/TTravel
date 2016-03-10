@@ -15,6 +15,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.message.fragment.ContactListFragment;
+import com.wukong.ttravel.service.my.fragment.MeFragment;
 import com.wukong.ttravel.service.order.fragment.OrderFragment;
 import com.wukong.ttravel.widget.TabManager;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TabHost mTabHost;
     private TabManager mTabManager;
+    private SlidingMenu slidingMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +31,25 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initTabHost();
 
-        //slideMenu
-//        SlideMenu slideMenu = new  SlideMenu();
-        SlidingMenu slidingMenu = new SlidingMenu();
+        //slidingMenu
+        initSlideMenu();
+    }
+
+
+    void initSlideMenu() {
+
+        slidingMenu = new SlidingMenu(this);
+        slidingMenu.setMode(SlidingMenu.RIGHT);
+        slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//        slidingMenu.setShadowWidthRes(R.dimen.sliding_menu_shadow_width);
+        slidingMenu.setBehindOffsetRes(R.dimen.sliding_menu_offset);
+        slidingMenu.setShadowDrawable(R.drawable.shadow);
+        slidingMenu.setFadeDegree(0.35f);
+        slidingMenu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        slidingMenu.setMenu(R.layout.me_menu_content);
+
+        MeFragment meFragment = new MeFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.right_menu_fragment,meFragment).commit();
 
     }
 
@@ -48,9 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     //初始化TabHost
     private void initTabHost() {
@@ -66,6 +82,22 @@ public class MainActivity extends AppCompatActivity {
 
         //设置tabItem分割线的颜色
         mTabHost.getTabWidget().setDividerDrawable(R.color.tab_bg);
+
+        //点击了消息tab
+        mTabHost.getTabWidget().getChildTabViewAt(3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //点击了我的tab
+        mTabHost.getTabWidget().getChildTabViewAt(4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                slidingMenu.toggle();
+            }
+        });
 
         //绑定点击事件
 

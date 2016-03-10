@@ -14,5 +14,9 @@
 
     <dimen name="font_size">14sp</dimen>
 
+    <!-- slidingMenu 相关-->
+    <dimen name="sliding_menu_shadow_width">-50dp</dimen>
+    <dimen name="sliding_menu_offset">100dp</dimen>
+
 
 </resources>
