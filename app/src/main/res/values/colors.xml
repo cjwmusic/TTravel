@@ -3,7 +3,10 @@
 
     <color name="transparent">#00000000</color>
 
+    <color name="red">#FF0000</color>
+
     <color name="brand">#FFD300</color>
+    <color name="brand_b">#FF5E45</color>
     <color name="brand_c">#1A1A1A</color>
     <color name="brand_m">#4E4E4C</color>
 
