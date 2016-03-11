@@ -1,6 +1,7 @@
 package com.wukong.ttravel.service.login.activity;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,6 +35,9 @@ public class ResetPasswordActivity extends BaseActivity {
     @Bind(R.id.password_confirm_et)
     EditText passswordConfirmEt;
 
+    @Bind(R.id.get_sms_code_button)
+    Button getSmsCodeButton;
+
     @OnClick(R.id.get_sms_code_button)
     void doGetSmsCode(View v) {
         //验证手机
@@ -43,18 +47,35 @@ public class ResetPasswordActivity extends BaseActivity {
             return;
         }
 
-        showLoading("正在获取验证码...");
+        getSmsCodeButton.setEnabled(false);
+        getSmsCodeButton.setText("获取中");
+//        showLoading("正在获取验证码...");
 
         HttpClient.postLogin("Enter/GetVerificationCode", getParams(username), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
                 JSONObject data = (JSONObject) obj;
                 showSuccess(data.getString("Message"));
+
+                getSmsCodeButton.setText("60秒可重发");
+                new CountDownTimer(60000, 1000) {
+
+                    public void onTick(long millisUntilFinished) {
+                        getSmsCodeButton.setText(millisUntilFinished / 1000 + "秒可重发");
+                    }
+
+                    public void onFinish() {
+                        getSmsCodeButton.setText("重新获取");
+                        getSmsCodeButton.setEnabled(true);
+                    }
+                }.start();
+
             }
 
             @Override
             public void onFail(HttpError error) {
                 showError(error.getMessage());
+                getSmsCodeButton.setEnabled(true);
             }
         });
     }
