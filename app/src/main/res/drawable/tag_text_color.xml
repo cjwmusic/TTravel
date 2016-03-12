@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 没有焦点时字体颜色 -->
+
+    <item android:color="@color/write_bg" android:state_checked="true" android:state_pressed="true"/>
+    <item android:color="@color/write_bg" android:state_checked="true" android:state_pressed="false"/>
+    <item android:color="@color/grayLevel1" android:state_checked="false" android:state_pressed="true"/>
+    <item android:color="@color/grayLevel1"/>
+
+</selector>

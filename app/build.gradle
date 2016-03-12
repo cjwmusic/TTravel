@@ -53,7 +53,6 @@ dependencies {
 
     compile 'com.kaopiz:kprogresshud:1.0.5'
     compile 'com.bigkoo:svprogresshud:1.0.2'
-
     compile project(':SlidingMenu')
 
 }
