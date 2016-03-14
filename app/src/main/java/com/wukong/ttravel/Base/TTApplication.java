@@ -26,6 +26,7 @@ import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 import com.wukong.ttravel.service.login.activity.LoginActivity;
+import com.wukong.ttravel.service.login.activity.ResetPasswordActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
 import com.wukong.ttravel.service.my.activity.TTAboutActivity;
 
@@ -151,7 +152,7 @@ public class TTApplication  extends Application{
         Router.sharedRouter().map("about/:id/:title", TTAboutActivity.class);
 
         Router.sharedRouter().map("doLogin", LoginActivity.class);
-
+        Router.sharedRouter().map("resetPassword", ResetPasswordActivity.class);
 
         //聊天界面
         Router.sharedRouter().map("chat/:receiverId", ChatActivity.class);

@@ -18,6 +18,8 @@ public class Constant {
     public static final String USER_MOBILE = "mobile";
     public static final String USER_AVATAR = "picUrl";
     public static final String USER_GENDER = "gender";
+    public static final String USER_TX_PASSWORD = "userTxPassword";
+
 
 
     public static final int REQUEST_CODE_SIGNIN = 300;

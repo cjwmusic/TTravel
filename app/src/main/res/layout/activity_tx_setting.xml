@@ -44,7 +44,7 @@
             android:gravity="center"
             android:singleLine="true"
             android:textColor="@color/blackLevel2"
-            android:text="重置密码"
+            android:text="提现密码设置"
             android:textSize="16dp" />
 
 
@@ -214,7 +214,7 @@
                 />
         </RelativeLayout>
 
-        </LinearLayout>
+    </LinearLayout>
 
     <Button
         android:id="@+id/action_button"

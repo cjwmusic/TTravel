@@ -21,6 +21,7 @@ import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.my.activity.MeDetailActivity;
 import com.wukong.ttravel.service.my.activity.MeHelpActivity;
+import com.wukong.ttravel.service.my.activity.SettingActivity;
 import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
 
@@ -91,7 +92,9 @@ public class MeFragment extends BaseFragment {
                     } else if (position == 5) {
                         Intent intent = new Intent(getActivity(), MeHelpActivity.class);
                         startActivity(intent);
-
+                    } else if (position == 3) {
+                        Intent intent = new Intent(getActivity(), SettingActivity.class);
+                        startActivity(intent);
                     }
                 }
             });

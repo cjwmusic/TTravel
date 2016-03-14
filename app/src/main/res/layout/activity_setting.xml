@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- titleBar-->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/write_bg">
+
+        <LinearLayout
+            android:id="@+id/action_bar_button_back"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:onClick="handleBack"
+            >
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:scaleType="center"
+                android:src="@drawable/back"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blackLevel2"
+            android:text="设置"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/action_bar_title"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+
+    <!-- 账户密码 -->
+    <RelativeLayout
+        android:id="@+id/setting_user_password"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel1"
+            android:text="账户密码"/>
+
+        <ImageView
+            android:id="@+id/arrow_realname_cert"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/narrow_gray"
+            />
+
+        <TextView
+            android:id="@+id/me_realname"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@id/arrow_realname_cert"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="130dp"
+            android:textColor="@color/grayLevel6"
+            android:textSize="13sp"
+            android:text="******"
+            />
+
+        <TextView
+            android:id="@+id/me_realname_no_label"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/arrow_realname_cert"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="130dp"
+            android:background="@drawable/button_style2"
+            android:textColor="@color/write_bg"
+            android:textSize="10sp"
+            android:visibility="gone"
+            android:text="未实名认证"
+            />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <!-- 支付密码 -->
+    <RelativeLayout
+        android:id="@+id/setting_pay_password"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel1"
+            android:text="支付密码"/>
+
+        <ImageView
+            android:id="@+id/arrow_pay"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/narrow_gray"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@id/arrow_pay"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="130dp"
+            android:textColor="@color/grayLevel6"
+            android:textSize="13sp"
+            android:text="******"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <!-- 提现密码 -->
+    <RelativeLayout
+        android:id="@+id/setting_tixian_password"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel1"
+            android:text="提现密码"/>
+
+        <ImageView
+            android:id="@+id/arrow_tixian"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/narrow_gray"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@id/arrow_tixian"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="130dp"
+            android:textColor="@color/grayLevel6"
+            android:textSize="13sp"
+            android:text="******"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <!-- 黑名单列表 -->
+    <RelativeLayout
+        android:id="@+id/setting_black_name"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel1"
+            android:text="黑名单列表"/>
+
+        <ImageView
+            android:id="@+id/arrow_black_name"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/narrow_gray"
+            />
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="@color/gray_bg"/>-->
+
+    </RelativeLayout>
+
+    <!-- 退出登录 -->
+    <RelativeLayout
+        android:id="@+id/setting_logout"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/write_bg"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel1"
+            android:text="退出登录"/>
+
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_marginLeft="15dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="@color/gray_bg"/>-->
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>

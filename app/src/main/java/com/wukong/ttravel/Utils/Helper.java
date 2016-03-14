@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 
+import com.facebook.common.references.SharedReference;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.TTApplication;
 import com.wukong.ttravel.service.login.model.TTUser;
@@ -76,6 +77,11 @@ public class Helper {
     public String getUserId() {
         SharedPreferences user = this._context.getSharedPreferences("user_info", 0);
         return user.getString("USER_ID", "");
+    }
+
+    public String getTxPassword() {
+        SharedPreferences user = this._context.getSharedPreferences("user_Info",0);
+        return user.getString(Constant.USER_TX_PASSWORD,"");
     }
 
     public TTUser getCurrentUer() {

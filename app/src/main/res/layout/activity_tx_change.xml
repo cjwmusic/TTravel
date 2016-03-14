@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/write_bg">
+
+        <EditText
+            android:id="@+id/old_password"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:layout_marginLeft="20dp"
+            android:hint="就密码"
+            android:textColorHint="@color/grayLevel3"
+            />
+
+        <TextView
+            android:id="@id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_bg"
+            android:layout_below="@id/old_password"
+            android:layout_marginLeft="20dp"/>
+
+        <EditText
+            android:id="@+id/new_password"
+            android:layout_width="match_parent"
+            android:layout_marginTop="2dp"
+            android:layout_height="57dp"
+            android:layout_below="@id/old_password"
+            android:layout_marginRight="15dp"
+            android:background="@android:color/white"
+            android:singleLine="true"
+            android:textSize="13sp"
+            android:layout_marginLeft="20dp"
+            android:hint="新密码"
+            android:textColorHint="@color/grayLevel3"
+            />
+
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/action_button"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="45dp"
+        android:text="确定"
+        android:textColor="@color/write_bg"
+        android:textSize="15sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_button"/>
+
+
+</LinearLayout>
