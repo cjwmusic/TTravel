@@ -20,6 +20,7 @@ import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.my.activity.MeDetailActivity;
+import com.wukong.ttravel.service.my.activity.MeHelpActivity;
 import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
 
@@ -87,6 +88,10 @@ public class MeFragment extends BaseFragment {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     if (position == 4) { //关于
                         Router.sharedRouter().open("about/" + "20151225901" + "/" + "关于");
+                    } else if (position == 5) {
+                        Intent intent = new Intent(getActivity(), MeHelpActivity.class);
+                        startActivity(intent);
+
                     }
                 }
             });
