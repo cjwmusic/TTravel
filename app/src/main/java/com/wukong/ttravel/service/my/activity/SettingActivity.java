@@ -8,6 +8,7 @@ import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.Helper;
+import com.wukong.ttravel.service.my.adapter.BlackListAdapter;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -51,8 +52,9 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.setting_black_name)
     void onClickBlackNameList(View v) {
-
-
+        Intent intent = new Intent();
+        intent.setClass(this,BlackListActivity.class);
+        startActivity(intent);
     }
     @OnClick(R.id.setting_logout)
     void onClickLoginLout(View v) {
