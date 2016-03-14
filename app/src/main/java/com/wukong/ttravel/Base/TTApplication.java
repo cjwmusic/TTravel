@@ -27,6 +27,7 @@ import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 import com.wukong.ttravel.service.login.activity.LoginActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
+import com.wukong.ttravel.service.my.activity.TTAboutActivity;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -147,6 +148,8 @@ public class TTApplication  extends Application{
         Router.sharedRouter().map("tailorIndex/:id", TailorIndexActivity.class);
         Router.sharedRouter().map("commentList/:id", CommentListActivity.class);
         Router.sharedRouter().map("discoverDetail/:id/:title", DiscoverDetailActivity.class);
+        Router.sharedRouter().map("about/:id/:title", TTAboutActivity.class);
+
         Router.sharedRouter().map("doLogin", LoginActivity.class);
 
 

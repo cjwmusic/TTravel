@@ -12,6 +12,7 @@ public class Comment {
     private String commentTime;
     private String commentContent;
     private Integer score;
+    private String serviceName;
 
     public void setScore(Integer score) {
         this.score = score;
@@ -25,6 +26,13 @@ public class Comment {
         score = jsonObject.getInteger("EvalScore");
     }
 
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
     public String getNickName() {
         return nickName;

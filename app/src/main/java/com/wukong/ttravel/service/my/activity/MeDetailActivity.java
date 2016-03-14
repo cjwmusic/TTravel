@@ -1,5 +1,6 @@
 package com.wukong.ttravel.service.my.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -84,7 +85,9 @@ public class MeDetailActivity extends BaseActivity{
     TextView nameNoCertLabel;
     @OnClick(R.id.me_realname_cert)
     void onClickRealNameCertCell(View v) {
-
+        Intent intent = new Intent();
+        intent.setClass(this,RealNameCertActivity.class);
+        startActivity(intent);
     }
 
     //手机认证

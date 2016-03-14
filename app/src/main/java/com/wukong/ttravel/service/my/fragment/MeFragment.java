@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.Base.BaseFragment;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
@@ -23,6 +24,7 @@ import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
 
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -83,8 +85,9 @@ public class MeFragment extends BaseFragment {
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
+                    if (position == 4) { //关于
+                        Router.sharedRouter().open("about/" + "20151225901" + "/" + "关于");
+                    }
                 }
             });
         }
