@@ -12,7 +12,10 @@ import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.Constant;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.MessageUtils;
+import com.wukong.ttravel.service.login.model.TTUser;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -76,6 +79,9 @@ public class LoginActivity extends BaseActivity {
                 JSONObject data = (JSONObject) obj;
                 showSuccess(data.getString("Message"));
                 //登录成功，发通知
+                JSONObject userModel = data.getJSONObject("Model");
+                TTUser user = new TTUser(userModel);
+                loginSuccess(user);
             }
 
             @Override
@@ -90,7 +96,7 @@ public class LoginActivity extends BaseActivity {
     @OnClick(R.id.register_button)
     void doRegister(View v) {
         Intent intent = new Intent();
-        intent.setClass(this,RegisterActivity.class);
+        intent.setClass(this, RegisterActivity.class);
         startActivity(intent);
     }
 
@@ -108,6 +114,34 @@ public class LoginActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.setClass(this, FastLoginActivity.class);
         startActivity(intent);
+    }
+
+    //登录成功
+    void loginSuccess(TTUser user){
+        //1 获取用户基本信息，存储到本地
+        Helper.sharedHelper().setUserId(user.getUserId());
+        storeUserProfile(user);
+
+        //2 登录LeanCloud
+
+
+        //3 finish
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();
+
+    }
+
+    //存储用户的基本信息
+    private void storeUserProfile(TTUser user) {
+
+        Helper.sharedHelper().setStringUserInfo(Constant.USER_NICK, user.getNickName());
+        Helper.sharedHelper().setStringUserInfo(Constant.USER_PASSWORD,user.getPassword());
+        Helper.sharedHelper().setStringUserInfo(Constant.USER_MOBILE,user.getUserPhoneNumber());
+        Helper.sharedHelper().setStringUserInfo(Constant.USER_ID, user.getUserId());
+        Helper.sharedHelper().setStringUserInfo(Constant.USER_AVATAR, user.getUserAvatar());
+        Helper.sharedHelper().setIntUserInfo(Constant.USER_GENDER, user.getGender());
+
     }
 
     private JSONObject getParams(String username, String password) {

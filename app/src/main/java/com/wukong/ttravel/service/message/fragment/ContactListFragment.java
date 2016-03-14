@@ -16,6 +16,7 @@ import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.home.model.Tailor;
 import com.wukong.ttravel.service.message.adapter.ContactListAdapter;
 import com.wukong.ttravel.service.message.model.TTContact;
@@ -117,10 +118,11 @@ public class ContactListFragment extends BaseFragment implements SwipeRefreshLay
 
 
     private JSONObject getParams(int page) {
+
         JSONObject params;
         try {
             params = new JSONObject();
-            params.put("strMemberID","20160128001");
+            params.put("strMemberID", Helper.sharedHelper().getUserId());
             params.put("intCount", 10);
             params.put("intBegin", page * 10);
         } catch (Exception e) {

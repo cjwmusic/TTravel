@@ -1,5 +1,6 @@
 package com.wukong.ttravel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -12,6 +13,9 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.wukong.ttravel.Base.Router.Router;
+import com.wukong.ttravel.Utils.Constant;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.message.fragment.ContactListFragment;
@@ -24,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
     private TabHost mTabHost;
     private TabManager mTabManager;
     private SlidingMenu slidingMenu;
+
+    private final int MESSAGE_SINGIN_REQUEST_CODE = 100;
+    private final int ME_SINGIN_REQUEST_CODE = 101;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         slidingMenu = new SlidingMenu(this);
         slidingMenu.setMode(SlidingMenu.RIGHT);
         slidingMenu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//        slidingMenu.setShadowWidthRes(R.dimen.sliding_menu_shadow_width);
         slidingMenu.setBehindOffsetRes(R.dimen.sliding_menu_offset);
         slidingMenu.setShadowDrawable(R.drawable.shadow);
         slidingMenu.setFadeDegree(0.35f);
@@ -61,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         testObject.saveInBackground(new SaveCallback() {
             @Override
             public void done(AVException e) {
-                if(e == null){
+                if (e == null) {
                     Log.d("leanCloudTest----saved", "success!");
                 }
             }
@@ -87,7 +94,11 @@ public class MainActivity extends AppCompatActivity {
         mTabHost.getTabWidget().getChildTabViewAt(3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (Helper.sharedHelper().hasUserId()) {
+                    mTabHost.setCurrentTab(3);
+                } else {
+                    Router.sharedRouter().openFormResult("doLogin", ME_SINGIN_REQUEST_CODE, MainActivity.this);
+                }
             }
         });
 
@@ -95,7 +106,13 @@ public class MainActivity extends AppCompatActivity {
         mTabHost.getTabWidget().getChildTabViewAt(4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                slidingMenu.toggle();
+                if (Helper.sharedHelper().hasUserId()) {
+                    slidingMenu.toggle();
+                } else {
+                    Router.sharedRouter().openFormResult("doLogin", MESSAGE_SINGIN_REQUEST_CODE, MainActivity.this);
+                }
+
+
             }
         });
 
@@ -135,5 +152,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ME_SINGIN_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                mTabHost.setCurrentTab(3);
+            }
+        } else if (requestCode == MESSAGE_SINGIN_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                mTabHost.setCurrentTab(4);
+            }
+        }
     }
 }

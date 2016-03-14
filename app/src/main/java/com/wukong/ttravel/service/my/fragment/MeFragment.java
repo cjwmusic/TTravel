@@ -1,5 +1,6 @@
 package com.wukong.ttravel.service.my.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,7 +16,9 @@ import com.wukong.ttravel.Base.BaseFragment;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
+import com.wukong.ttravel.service.my.activity.MeDetailActivity;
 import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
 
@@ -54,9 +57,18 @@ public class MeFragment extends BaseFragment {
 
             //初始化ListView
             listHeader = getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_me_header, null);
+            listHeader.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    intent.setClass(getActivity(),MeDetailActivity.class);
+                    startActivity(intent);
+
+                }
+            });
+
             userAvatar = (SimpleDraweeView)listHeader.findViewById(R.id.image_avatar);
             userNickName = (TextView)listHeader.findViewById(R.id.nick_name);
-
 
             listView.addHeaderView(listHeader);
             listView.setHeaderDividersEnabled(false);
@@ -72,10 +84,16 @@ public class MeFragment extends BaseFragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
                 }
             });
         }
         return rootView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     void initListData() {
@@ -93,7 +111,7 @@ public class MeFragment extends BaseFragment {
     }
 
     void loadData() {
-        HttpClient.post("Traveler/GetTailor",getParams("20160119001") ,null ,new HttpClient.HttpCallback<Object>() {
+        HttpClient.post("Traveler/GetTailor",getParams() ,null ,new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
                 JSONObject jsonObject = (JSONObject)obj;
@@ -110,11 +128,11 @@ public class MeFragment extends BaseFragment {
 
     }
 
-    private JSONObject getParams(String userId) {
+    private JSONObject getParams() {
         JSONObject params;
         try {
             params = new JSONObject();
-            params.put("strTailorID",userId);
+            params.put("strTailorID", Helper.sharedHelper().getUserId());
         } catch (Exception e) {
             params = null;
         }

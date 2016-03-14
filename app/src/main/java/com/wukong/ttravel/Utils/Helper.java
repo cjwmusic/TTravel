@@ -1,5 +1,6 @@
-package com.wukong.ttravel.Base;
+package com.wukong.ttravel.Utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -13,12 +14,17 @@ import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
+
 import com.wukong.ttravel.Base.Router.Router;
+import com.wukong.ttravel.Base.TTApplication;
+import com.wukong.ttravel.service.login.model.TTUser;
 
 import java.util.List;
 
@@ -71,6 +77,19 @@ public class Helper {
         SharedPreferences user = this._context.getSharedPreferences("user_info", 0);
         return user.getString("USER_ID", "");
     }
+
+    public TTUser getCurrentUer() {
+        TTUser ttUser = new TTUser();
+        SharedPreferences user = this._context.getSharedPreferences("user_info", 0);
+        ttUser.setUserId(user.getString("USER_ID", ""));
+        ttUser.setUserAvatar(user.getString(Constant.USER_AVATAR, ""));
+        ttUser.setUserPhoneNumber(user.getString(Constant.USER_MOBILE, ""));
+        ttUser.setPassword(user.getString(Constant.USER_PASSWORD, ""));
+        ttUser.setGender(user.getInt(Constant.USER_GENDER,0));
+
+        return ttUser;
+    }
+
 
     public void setUserId(String userId) {
         SharedPreferences user = this._context.getSharedPreferences("user_info", 0);
@@ -224,14 +243,14 @@ public class Helper {
 //        if (AuthService.getInstance().isLogin()) {
 //            AuthService.getInstance().logout();
 //        }
-//        //ut user logout
-////        UTAnalytics.getInstance().updateUserAccount("", "");
-//
-//        clearToken();
-//        clearUserId();
-//        removeUserInfo(Constant.USER_AVATAR);
-//        removeUserInfo(Constant.USER_GENDER);
-//        removeUserInfo(Constant.USER_NICK);
+        //ut user logout
+//        UTAnalytics.getInstance().updateUserAccount("", "");
+
+        clearToken();
+        clearUserId();
+        removeUserInfo(Constant.USER_AVATAR);
+        removeUserInfo(Constant.USER_GENDER);
+        removeUserInfo(Constant.USER_NICK);
     }
 
     public static boolean isNetworkConnected(Context context) {
@@ -271,8 +290,54 @@ public class Helper {
         }
     }
 
-
-
+    /**
+     * 获取网络类型，发送给服务端
+     *
+     * @return
+     */
+    public static int getNetWorkType() {
+        int networkType = NETWORK_TYPE_OTHER;
+        ConnectivityManager manager = (ConnectivityManager) TTApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                return NETWORK_TYPE_WIFI;
+            } else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                String subtypeName = networkInfo.getSubtypeName();
+                switch (networkInfo.getSubtype()) {
+                    case TelephonyManager.NETWORK_TYPE_GPRS:
+                    case TelephonyManager.NETWORK_TYPE_EDGE:
+                    case TelephonyManager.NETWORK_TYPE_CDMA:
+                    case TelephonyManager.NETWORK_TYPE_1xRTT:
+                    case TelephonyManager.NETWORK_TYPE_IDEN:
+                        networkType = NETWORK_TYPE_2G;
+                        break;
+                    case TelephonyManager.NETWORK_TYPE_UMTS:
+                    case TelephonyManager.NETWORK_TYPE_EVDO_0:
+                    case TelephonyManager.NETWORK_TYPE_EVDO_A:
+                    case TelephonyManager.NETWORK_TYPE_HSDPA:
+                    case TelephonyManager.NETWORK_TYPE_HSUPA:
+                    case TelephonyManager.NETWORK_TYPE_HSPA:
+                    case TelephonyManager.NETWORK_TYPE_EVDO_B:
+                    case TelephonyManager.NETWORK_TYPE_EHRPD:
+                    case TelephonyManager.NETWORK_TYPE_HSPAP:
+                        networkType = NETWORK_TYPE_3G;
+                        break;
+                    case TelephonyManager.NETWORK_TYPE_LTE:    //api<11 : replace by 13
+                        networkType = NETWORK_TYPE_4G;
+                        break;
+                    default:
+                        //TD-SCDMA 中国移动 WCDMA 联通 CDMA2000电信 三种3G制式
+                        if (subtypeName.equalsIgnoreCase("TD-SCDMA") || subtypeName.equalsIgnoreCase("WCDMA")
+                                || subtypeName.equalsIgnoreCase("CDMA2000")) {
+                            networkType = NETWORK_TYPE_3G;
+                        }
+                        break;
+                }
+            }
+        }
+        return networkType;
+    }
 
     public static boolean isPackageExist(Context context, String packageName) {
         if (TextUtils.isEmpty(packageName)) {
@@ -288,9 +353,7 @@ public class Helper {
         return false;
     }
 
-
-
-    public  static String getSignature(Context context, String packageName) {
+    public static String getSignature(Context context, String packageName) {
         if (!TextUtils.isEmpty(packageName)) {
             try {
                 PackageManager manager = context.getPackageManager();
@@ -309,4 +372,28 @@ public class Helper {
         }
         return null;
     }
+
+    public static void makeCall(Context context, String telNumber) {
+        try {
+            if (PackageManager.PERMISSION_GRANTED ==
+                    context.checkCallingPermission(Manifest.permission.CALL_PHONE)) {
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:" + telNumber));
+                context.startActivity(intent);
+            } else {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + telNumber));
+                context.startActivity(intent);
+            }
+        } catch (Exception e) {
+            MessageUtils.showToast("拨号失败，请检查是否开启拨打电话权限");
+            e.printStackTrace();
+        }
+    }
+
+    public static boolean hasPermission(String permission){
+        return PackageManager.PERMISSION_GRANTED ==
+                TTApplication.getInstance().checkCallingPermission(permission);
+    }
+
 }

@@ -5,7 +5,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.media.AudioManager;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.wukong.ttravel.Base.Helper;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.message.model.TTIMMessage;
 

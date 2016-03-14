@@ -155,7 +155,7 @@
                     android:layout_marginLeft="130dp"
                     android:textColor="@color/grayLevel6"
                     android:textSize="13sp"
-                    android:text="未付款"
+                    android:text="cjw"
                     />
 
                 <TextView
@@ -319,6 +319,59 @@
 
             </RelativeLayout>
 
+            <!-- 我的标签 -->
+            <RelativeLayout
+                android:id="@+id/me_tags_cell"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/write_bg">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/grayLevel1"
+                    android:text="我的标签"/>
+
+
+                <!--<TextView-->
+                    <!--android:id="@+id/me_tags"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:gravity="center_vertical"-->
+                    <!--android:layout_toLeftOf="@id/arrow5"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:layout_marginLeft="130dp"-->
+                    <!--android:textColor="@color/grayLevel6"-->
+                    <!--android:textSize="13sp"-->
+                    <!--android:text="一句话了解我"-->
+                    <!--/>-->
+
+                <ImageView
+                    android:id="@+id/arrow_tags"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitCenter"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/narrow_gray"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_bg"/>
+
+            </RelativeLayout>
+
+
             <!-- 相册 -->
             <RelativeLayout
                 android:id="@+id/me_album_cell"
@@ -337,6 +390,17 @@
                     android:textColor="@color/grayLevel1"
                     android:text="相册"/>
 
+                <ImageView
+                    android:id="@+id/arrow_album"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitCenter"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/narrow_gray"
+                    />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -346,14 +410,13 @@
 
             </RelativeLayout>
 
-            <!-- 首图 -->
+            <!-- 实名认证 -->
             <RelativeLayout
-                android:id="@+id/me_first_image_cell"
+                android:id="@+id/me_realname_cert"
                 android:layout_width="match_parent"
                 android:layout_height="47dp"
-                android:background="@color/write_bg">
-
-
+                android:background="@color/write_bg"
+                android:layout_marginTop="11dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -363,7 +426,52 @@
                     android:layout_marginLeft="15dp"
                     android:textSize="13sp"
                     android:textColor="@color/grayLevel1"
-                    android:text="首图"/>
+                    android:text="实名认证"/>
+
+                <ImageView
+                    android:id="@+id/arrow_realname_cert"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitCenter"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/narrow_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/me_realname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_toLeftOf="@id/arrow_realname_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:textColor="@color/grayLevel6"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    android:text="已实名认证"
+                    />
+
+                <TextView
+                    android:id="@+id/me_realname_no_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/arrow_realname_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:background="@drawable/button_style2"
+                    android:textColor="@color/write_bg"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    android:text="未实名认证"
+                    />
+
+
 
                 <TextView
                     android:layout_width="match_parent"
@@ -373,6 +481,145 @@
                     android:background="@color/gray_bg"/>
 
             </RelativeLayout>
+
+            <!-- 手机认证 -->
+            <RelativeLayout
+                android:id="@+id/me_phone_cert"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/write_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/grayLevel1"
+                    android:text="手机验证"/>
+
+                <ImageView
+                    android:id="@+id/arrow_phone_cert"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitCenter"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/narrow_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/me_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_toLeftOf="@id/arrow_phone_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:textColor="@color/grayLevel6"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    android:text="100****0000"
+                    />
+
+                <TextView
+                    android:id="@+id/me_phone_cert_no_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/arrow_phone_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:background="@drawable/button_style2"
+                    android:textColor="@color/write_bg"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    android:text="未绑定"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_bg"/>
+
+            </RelativeLayout>
+
+            <!-- 邮箱认证 -->
+            <RelativeLayout
+                android:id="@+id/me_email_cert"
+                android:layout_width="match_parent"
+                android:layout_height="47dp"
+                android:background="@color/write_bg">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="15dp"
+                    android:textSize="13sp"
+                    android:textColor="@color/grayLevel1"
+                    android:text="邮箱验证"/>
+
+                <ImageView
+                    android:id="@+id/arrow_email_cert"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="15dp"
+                    android:scaleType="fitCenter"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/narrow_gray"
+                    />
+
+                <TextView
+                    android:id="@+id/me_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:layout_toLeftOf="@id/arrow_email_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:textColor="@color/grayLevel6"
+                    android:textSize="13sp"
+                    android:visibility="gone"
+                    android:text="已绑定"
+                    />
+
+                <TextView
+                    android:id="@+id/me_email_no_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:gravity="center_vertical"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@id/arrow_email_cert"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="130dp"
+                    android:background="@drawable/button_style2"
+                    android:textColor="@color/write_bg"
+                    android:textSize="10sp"
+                    android:visibility="gone"
+                    android:text="未绑定"
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/gray_bg"/>
+
+            </RelativeLayout>
+
 
         </LinearLayout>
 

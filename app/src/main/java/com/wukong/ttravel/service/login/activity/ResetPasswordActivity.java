@@ -49,7 +49,6 @@ public class ResetPasswordActivity extends BaseActivity {
 
         getSmsCodeButton.setEnabled(false);
         getSmsCodeButton.setText("获取中");
-//        showLoading("正在获取验证码...");
 
         HttpClient.postLogin("Enter/GetVerificationCode", getParams(username), null, new HttpClient.HttpCallback<Object>() {
             @Override

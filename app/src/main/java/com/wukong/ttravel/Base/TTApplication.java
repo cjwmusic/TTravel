@@ -21,9 +21,11 @@ import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.im.AVImClientManager;
 import com.wukong.ttravel.Base.im.MessageHandler;
 import com.wukong.ttravel.Base.request.HttpClient;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
+import com.wukong.ttravel.service.login.activity.LoginActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
 
 import java.util.Arrays;
@@ -49,6 +51,9 @@ public class TTApplication  extends Application{
         context = this;
 
         HttpClient.init();
+
+        // 设置context
+        Helper.sharedHelper().setContext(getApplicationContext());
 
         Fresco.initialize(context);
 
@@ -142,6 +147,8 @@ public class TTApplication  extends Application{
         Router.sharedRouter().map("tailorIndex/:id", TailorIndexActivity.class);
         Router.sharedRouter().map("commentList/:id", CommentListActivity.class);
         Router.sharedRouter().map("discoverDetail/:id/:title", DiscoverDetailActivity.class);
+        Router.sharedRouter().map("doLogin", LoginActivity.class);
+
 
         //聊天界面
         Router.sharedRouter().map("chat/:receiverId", ChatActivity.class);

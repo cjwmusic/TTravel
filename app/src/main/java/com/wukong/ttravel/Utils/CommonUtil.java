@@ -20,7 +20,7 @@ public class CommonUtil {
             PowerManager powerManager = (PowerManager) context
                     .getSystemService(Context.POWER_SERVICE);
             wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                    "kongge");
+                    "TT");
             wakeLock.setReferenceCounted(true);
             wakeLock.acquire();
         }
