@@ -84,6 +84,11 @@ public class Helper {
         return user.getString(Constant.USER_TX_PASSWORD,"");
     }
 
+    public String getPayPassword() {
+        SharedPreferences user = this._context.getSharedPreferences("user_Info",0);
+        return user.getString(Constant.USER_PAY_PASSWORD,"");
+    }
+
     public TTUser getCurrentUer() {
         TTUser ttUser = new TTUser();
         SharedPreferences user = this._context.getSharedPreferences("user_info", 0);
