@@ -2,6 +2,7 @@ package com.wukong.ttravel.service.home.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -113,6 +114,15 @@ public class TailorIndexActivity extends BaseActivity{
         listData = new ArrayList<>();
         adapter = new TailorLinesListAdapter(this,listData);
         linesListView.setAdapter(adapter);
+        linesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                TailorLine line = listData.get(position);
+                if (line != null) {
+                    Router.sharedRouter().open("lineDetail/"+ line.getProdID() +"/" + line.getProdName());
+                }
+            }
+        });
         loadLinesData();
     }
 

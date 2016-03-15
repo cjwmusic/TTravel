@@ -33,7 +33,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:divider="@color/write_bg"
-                android:dividerHeight="8dp" />
+                android:dividerHeight="1dp" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -25,6 +25,7 @@ import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
+import com.wukong.ttravel.service.home.activity.TailorLineDetailActivity;
 import com.wukong.ttravel.service.login.activity.LoginActivity;
 import com.wukong.ttravel.service.login.activity.ResetPasswordActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
@@ -168,6 +169,8 @@ public class TTApplication  extends Application{
 
         //聊天界面
         Router.sharedRouter().map("chat/:receiverId", ChatActivity.class);
+        //伴客线路详情页
+        Router.sharedRouter().map("lineDetail/:id/:title", TailorLineDetailActivity.class);
 
     }
 
