@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- titleBar-->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/write_bg">
+
+        <LinearLayout
+            android:id="@+id/action_bar_button_back"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:onClick="handleBack"
+            >
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:scaleType="center"
+                android:src="@drawable/back"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blackLevel2"
+            android:text="我的钱包"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/detail_button"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/yellowLevel2"
+            android:text="明细"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/tx_button"
+            android:layout_width="50dp"
+            android:layout_height="fill_parent"
+            android:layout_toLeftOf="@id/detail_button"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/yellowLevel2"
+            android:text="提现"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/action_bar_button_right"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:background="@color/yellowLevel2">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@color/write_bg"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="余额"/>
+
+        <TextView
+            android:id="@+id/remain_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:textColor="@color/write_bg"
+            android:gravity="center_horizontal"
+            android:text="￥560"
+            android:layout_marginTop="36dp"
+            android:layout_centerHorizontal="true" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp">
+
+            <!-- 收入 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/in_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/write_bg"
+                    android:textSize="12sp"
+                    android:text="560"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/write_bg"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_horizontal"
+                    android:textSize="12sp"
+                    android:text="收入"/>
+            </LinearLayout>
+            
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                />
+
+            <!-- 支出 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/out_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/write_bg"
+                    android:textSize="12sp"
+                    android:text="560"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/write_bg"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:text="支出"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/write_bg"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"
+                />
+
+            <!-- 支出 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tx_count"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/write_bg"
+                    android:textSize="12sp"
+                    android:text="560"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/write_bg"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:text="提现"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/grayLevel6"
+        android:gravity="center_horizontal"
+        android:text="提现说明"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/grayLevel1"
+        android:textSize="13sp"
+        android:lineSpacingExtra="8dp"
+        android:text="1 支持支付宝提现\n2 支付宝账户需与实名认证的账户一致\n3 提现金额须大于20元，时间、次数不限，预计两个工作日内到账;\n4 客服电话：0571-88739991"/>
+
+</LinearLayout>
