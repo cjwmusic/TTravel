@@ -26,4 +26,7 @@
     <dimen name="common_margin">12.0dip</dimen>
     <dimen name="common_margin_10">10.0dip</dimen>
 
+    <dimen name="historyscore_tb">10dp</dimen>
+
+
 </resources>
