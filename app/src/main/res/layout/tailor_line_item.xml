@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/write_bg"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/line_image"
+            android:layout_width="match_parent"
+            android:layout_height="143dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:scaleType="fitCenter"/>
+        <TextView
+            android:id="@+id/line_price"
+            android:layout_width="77dp"
+            android:layout_height="33dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignBottom="@id/line_image"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/bg_style1"
+            android:text="￥300"
+            android:textSize="17dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:textColor="@color/write_bg"/>
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_below="@id/line_image">
+            <TextView
+                android:id="@+id/line_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/write_bg"
+                android:layout_marginLeft="16dp"
+                android:textSize="12sp"
+                android:background="@drawable/bg_style2"
+                android:paddingTop="1dp"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="1dp"
+                android:text="线路一"
+                />
+
+            <TextView
+                android:id="@+id/line_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/line_number"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/grayLevel1"
+                android:text="夜游河坊街"
+                />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    
+
+    
+    
+
+</LinearLayout>

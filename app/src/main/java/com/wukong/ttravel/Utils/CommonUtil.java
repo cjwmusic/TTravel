@@ -14,6 +14,7 @@ import android.os.PowerManager;
 public class CommonUtil {
 
     private static PowerManager.WakeLock wakeLock;
+    private static String[] chineseNumber = { "零", "一", "二", "三", "四", "五", "六", "七", "八", "九" };
 
     public static PowerManager.WakeLock acquireLock(Context context) {
         if (wakeLock == null || !wakeLock.isHeld()) {
@@ -31,6 +32,10 @@ public class CommonUtil {
         if (wakeLock != null && wakeLock.isHeld()) {
             wakeLock.release();
         }
+    }
+
+    public static String AybTochinese(int i) {
+        return chineseNumber[i];
     }
 
 }

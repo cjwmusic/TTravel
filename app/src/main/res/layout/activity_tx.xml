@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- titleBar-->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/write_bg">
+
+        <LinearLayout
+            android:id="@+id/action_bar_button_back"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:onClick="handleBack"
+            >
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:scaleType="center"
+                android:src="@drawable/back"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blackLevel2"
+            android:text="提现"
+            android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/action_bar_button_back"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <!-- 提现账户-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@color/write_bg"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel2"
+            android:textSize="14dp"
+            android:layout_marginLeft="15dp"
+            android:text="提现账户"/>
+
+        <EditText
+            android:id="@+id/tx_name_et"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_toRightOf="@id/tv1"
+            android:background="@android:color/white"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:textColor="@color/grayLevel2"
+            android:layout_marginLeft="15dp"
+            android:hint="实名认证姓名"
+            android:textColorHint="@color/grayLevel3"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@id/tx_name_et"
+            android:background="@color/gray_bg"/>
+    </RelativeLayout>
+
+    <!--支付宝-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel2"
+            android:textSize="14dp"
+            android:layout_marginLeft="15dp"
+            android:text="支付宝"/>
+
+        <EditText
+            android:id="@+id/alipay_id_et"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_toRightOf="@id/tv2"
+            android:background="@android:color/white"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:textColor="@color/grayLevel2"
+            android:layout_marginLeft="15dp"
+            android:hint="支付宝帐号"
+            android:textColorHint="@color/grayLevel3"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@id/alipay_id_et"
+            android:background="@color/gray_bg"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/grayLevel6"
+        android:textSize="12sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:text="提现无需手续费，剩余可提现1000元"/>
+    
+    <!--提现金额-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel2"
+            android:textSize="14dp"
+            android:layout_marginLeft="15dp"
+            android:text="提现金额"/>
+
+        <Button
+            android:id="@+id/tx_all_button"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/yellowLevel2"
+            android:text="全部提现"
+            android:textSize="14dp" />
+
+        <EditText
+            android:id="@+id/tx_count_et"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_toRightOf="@id/tv3"
+            android:layout_toLeftOf="@id/tx_all_button"
+            android:background="@android:color/white"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:textColor="@color/grayLevel2"
+            android:layout_marginLeft="15dp"
+            android:hint="请输入1元以上的金额"
+            android:textColorHint="@color/grayLevel3"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@id/tx_count_et"
+            android:background="@color/gray_bg"/>
+    </RelativeLayout>
+
+    <!--提现密码-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:background="@color/write_bg">
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel2"
+            android:textSize="14dp"
+            android:layout_marginLeft="15dp"
+            android:text="提现密码"/>
+
+        <ImageView
+            android:id="@+id/eye_button"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="center"
+            android:clickable="true"
+            android:src="@drawable/close_eye"/>
+
+        <EditText
+            android:id="@+id/tx_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="57dp"
+            android:layout_toRightOf="@id/tv4"
+            android:background="@android:color/white"
+            android:singleLine="true"
+            android:textSize="14sp"
+            android:inputType="textPassword"
+            android:textColor="@color/grayLevel2"
+            android:layout_marginLeft="15dp"
+            android:hint="请输入1元以上的金额"
+            android:textColorHint="@color/grayLevel3"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="15dp"
+            android:layout_alignBottom="@id/tx_password_et"
+            android:background="@color/gray_bg"/>
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/tx_forget_pw_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@null"
+        android:gravity="center"
+        android:layout_marginRight="15dp"
+        android:textColor="@color/grayLevel2"
+        android:text="忘记密码?"
+        android:textSize="14dp" />
+
+    <Button
+        android:id="@+id/tx_do_button"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="45dp"
+        android:text="确定"
+        android:textColor="@color/write_bg"
+        android:textSize="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_button"/>
+
+</LinearLayout>

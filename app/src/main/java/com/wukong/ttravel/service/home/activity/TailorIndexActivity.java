@@ -1,17 +1,14 @@
 package com.wukong.ttravel.service.home.activity;
 
-import android.app.Activity;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.Base.BaseActivity;
@@ -20,9 +17,13 @@ import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.Base.views.MyListView;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.Utils.CommonUtil;
 import com.wukong.ttravel.Utils.ImgUtil;
+import com.wukong.ttravel.service.home.adapter.TailorLinesListAdapter;
 import com.wukong.ttravel.service.home.model.TailorDetail;
+import com.wukong.ttravel.service.home.model.TailorLine;
 
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -79,9 +80,6 @@ public class TailorIndexActivity extends BaseActivity{
     @Bind(R.id.comment_txt)
     TextView commentText;
 
-    @Bind(R.id.linesList)
-    MyListView linesListView;
-
     //全部评论的Button
     @Bind(R.id.comment_button)
     Button commentButton;
@@ -90,6 +88,11 @@ public class TailorIndexActivity extends BaseActivity{
     @Bind(R.id.book_time_button)
     RelativeLayout bookTimeButton;
 
+    @Bind(R.id.linesList)
+    MyListView linesListView;
+
+    private TailorLinesListAdapter adapter;
+    private ArrayList<TailorLine> listData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,10 +103,17 @@ public class TailorIndexActivity extends BaseActivity{
         Bundle extras = getIntent().getExtras();
         tailorId = extras.getString("id");
 
-
-        showProgressDialog("正在加载");
-
+        showLoading("正在加载");
         loadData();
+
+        initLines();
+    }
+
+    void initLines() {
+        listData = new ArrayList<>();
+        adapter = new TailorLinesListAdapter(this,listData);
+        linesListView.setAdapter(adapter);
+        loadLinesData();
     }
 
     private void loadData() {
@@ -111,10 +121,10 @@ public class TailorIndexActivity extends BaseActivity{
         HttpClient.post("Traveler/GetTailor", getParams(tailorId), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
+                dismissSvHud();
                 JSONObject data = (JSONObject) obj;
                 JSONObject model = data.getJSONObject("Model");
                 if (model != null) {
-                    hideProgressDialog();
                     TailorDetail tailorDetail = new TailorDetail(model);
                     updateUI(tailorDetail);
                 }
@@ -125,6 +135,31 @@ public class TailorIndexActivity extends BaseActivity{
 
             }
         });
+    }
+
+    private void loadLinesData() {
+
+        HttpClient.post("Traveler/GetTailorProduct", getParams(tailorId), null, new HttpClient.HttpCallback<Object>() {
+            @Override
+            public void onSuccess(Object obj) {
+                JSONObject data = (JSONObject) obj;
+                JSONArray listArray = data.getJSONArray("List");
+                if (listArray != null && listArray.size() > 0) {
+                    for (int i = 0;i < listArray.size(); i++) {
+                        TailorLine line = new TailorLine(listArray.getJSONObject(i));
+                        line.setProdLineNumber("线路" + CommonUtil.AybTochinese(i + 1));
+                        listData.add(line);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onFail(HttpError error) {
+                showError(error.getMessage());
+            }
+        });
+
     }
 
     private JSONObject getParams(String tailorId) {

@@ -26,10 +26,14 @@ import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.my.activity.MeDetailActivity;
 import com.wukong.ttravel.service.my.activity.MeHelpActivity;
+import com.wukong.ttravel.service.my.activity.MeTxActivity;
+import com.wukong.ttravel.service.my.activity.MeWalletActivity;
 import com.wukong.ttravel.service.my.activity.SettingActivity;
 import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
 import com.wukong.ttravel.service.my.model.TTSwitchTailorEvent;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
@@ -55,6 +59,9 @@ public class MeFragment extends BaseFragment {
 
     @Bind(R.id.listView)
     ListView listView;
+
+    @Bind(R.id.switch_button_text)
+    TextView switchButtonLabel;
 
     @OnClick(R.id.switch_button)
     void onClickSwitch(View v) {
@@ -108,6 +115,9 @@ public class MeFragment extends BaseFragment {
                         startActivity(intent);
                     } else if (position == 3) {
                         Intent intent = new Intent(getActivity(), SettingActivity.class);
+                        startActivity(intent);
+                    } else if (position == 1) { //我的钱包
+                        Intent intent = new Intent(getActivity(), MeWalletActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -171,10 +181,14 @@ public class MeFragment extends BaseFragment {
             event.from = 1;
             event.to = 2;
             app.setCurrentUserType(2);
+            switchButtonLabel.setText("切换到游客模式");
+
         } else {
             event.from = 2;
             event.to = 1;
             app.setCurrentUserType(1);
+            switchButtonLabel.setText("切换到伴客模式");
+
 
         }
         EventBus.getDefault().post(event);

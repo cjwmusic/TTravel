@@ -1,5 +1,6 @@
 package com.wukong.ttravel.service.my.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.internal.widget.ViewUtils;
 import android.view.View;
@@ -40,7 +41,9 @@ public class MeWalletActivity extends BaseActivity {
 
     @OnClick(R.id.tx_button)
     void onClickTxButton(View v) {
-
+        Intent intent = new Intent();
+        intent.setClass(this,MeTxActivity.class);
+        startActivity(intent);
     }
 
     @Override

@@ -309,6 +309,8 @@
                     android:id="@+id/linesList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="10dp"
                     android:layout_marginTop="12dp">
 
                 </com.wukong.ttravel.Base.views.MyListView>
@@ -318,6 +320,7 @@
                     android:id="@+id/book_time_button"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
                     android:background="@color/write_bg"
                     >
                     <TextView
