@@ -2,6 +2,7 @@ package com.wukong.ttravel;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -12,17 +13,23 @@ import android.widget.TabHost;
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
+import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.wukong.ttravel.Base.Router.Router;
+import com.wukong.ttravel.Base.im.ImTypeMessageEvent;
 import com.wukong.ttravel.Utils.Constant;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.custom.fragment.CustomServiceFragment;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.message.fragment.ContactListFragment;
+import com.wukong.ttravel.service.message.model.TTIMMessage;
 import com.wukong.ttravel.service.my.fragment.MeFragment;
+import com.wukong.ttravel.service.my.model.TTSwitchTailorEvent;
 import com.wukong.ttravel.service.order.fragment.OrderFragment;
 import com.wukong.ttravel.widget.TabManager;
+
+import de.greenrobot.event.EventBus;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,11 +44,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_main);
         initTabHost();
 
         //slidingMenu
         initSlideMenu();
+
+
+
     }
 
 
@@ -82,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         mTabManager = new TabManager(this, mTabHost, android.R.id.tabcontent);
         mTabHost.setup();
         //设置tabItem
-        mTabManager.addTab(getTabSpecView("home", R.layout.tab_item_home), CustomServiceFragment.class, null);
+        mTabManager.addTab(getTabSpecView("home", R.layout.tab_item_home), HomeFragment.class, null);
         mTabManager.addTab(getTabSpecView("discover", R.layout.tab_item_discover), DiscoverFragment.class, null);
         mTabManager.addTab(getTabSpecView("order", R.layout.tab_item_order), OrderFragment.class, null);
         mTabManager.addTab(getTabSpecView("message", R.layout.tab_item_message), ContactListFragment.class, null);
@@ -170,5 +181,30 @@ public class MainActivity extends AppCompatActivity {
                 mTabHost.setCurrentTab(4);
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
+    //用户切换身份的消息
+    public void onEvent(TTSwitchTailorEvent event) {
+
+        System.out.println("用户选择了切换身份");
+        slidingMenu.toggle();
+        //得到用户身份
+        int userType = event.to;
+        if (userType == 2) {
+            mTabManager.updateHomeTab(getTabSpecView("home", R.layout.tab_item_custom),
+                    CustomServiceFragment.class, null, "定制");
+        } else {
+            mTabManager.updateHomeTab(getTabSpecView("home", R.layout.tab_item_home),
+                    HomeFragment.class, null, "首页");
+        }
+
+        mTabHost.setCurrentTab(0);
+
     }
 }

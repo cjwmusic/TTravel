@@ -43,6 +43,17 @@ public class TTApplication  extends Application{
 
     private AVIMConversation imConversation;
 
+
+    private int currentUserType = 1;
+
+    public int getCurrentUserType() {
+        return currentUserType;
+    }
+
+    public void setCurrentUserType(int currentUserType) {
+        this.currentUserType = currentUserType;
+    }
+
     public AVIMConversation getImConversation() {
         return imConversation;
     }
@@ -139,6 +150,7 @@ public class TTApplication  extends Application{
     protected void toast(String str) {
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
+
 
     private void setupRouter() {
 

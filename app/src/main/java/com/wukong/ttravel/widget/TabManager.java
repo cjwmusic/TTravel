@@ -94,6 +94,38 @@ public class TabManager implements TabHost.OnTabChangeListener {
         return mTabs.get(tab);
     }
 
+    public void updateHomeTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args, String title) {
+        try {
+
+            String tag = tabSpec.getTag();
+            TabInfo oldTab = mTabs.get(tag);
+
+            oldTab.fragment = (BaseFragment) mFragmentManager.findFragmentByTag(tag);
+            if (oldTab.fragment != null && !oldTab.fragment.isDetached()) {
+                FragmentTransaction ft = mFragmentManager.beginTransaction();
+                ft.detach(oldTab.fragment);
+                // ft.commit();
+                ft.commitAllowingStateLoss();
+            }
+
+            TabInfo newTab = new TabInfo(tag, clss, args);
+            mTabs.put(tag, newTab);
+            TextView tabText = (TextView) mTabHost.getTabWidget().
+                    getChildAt(0).findViewById(R.id.tabText);
+            tabText.setText(title);
+            if (mLastTab != null && tag.equals(mLastTab.tag) && mLastTab != newTab) {
+                mLastTab.fragment = null;
+                mLastTab.args = null;
+                mLastTab.clss = null;
+                mLastTab = null;
+                setTab(newTab);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public void updateSquareTab(TabHost.TabSpec tabSpec, Class<?> clss, Bundle args, String title) {
         try {
 
@@ -124,6 +156,7 @@ public class TabManager implements TabHost.OnTabChangeListener {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void onTabChanged(String tabId) {

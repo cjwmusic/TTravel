@@ -8,12 +8,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.avos.avoscloud.im.v2.AVIMConversation;
+import com.avos.avoscloud.im.v2.AVIMTypedMessage;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.Base.BaseFragment;
 import com.wukong.ttravel.Base.Router.Router;
+import com.wukong.ttravel.Base.TTApplication;
+import com.wukong.ttravel.Base.im.ImTypeMessageEvent;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.R;
@@ -24,12 +29,15 @@ import com.wukong.ttravel.service.my.activity.MeHelpActivity;
 import com.wukong.ttravel.service.my.activity.SettingActivity;
 import com.wukong.ttravel.service.my.adapter.MeMenuAdapter;
 import com.wukong.ttravel.service.my.model.TTMenuItem;
+import com.wukong.ttravel.service.my.model.TTSwitchTailorEvent;
 
 import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by wukong on 3/11/16.
@@ -47,6 +55,12 @@ public class MeFragment extends BaseFragment {
 
     @Bind(R.id.listView)
     ListView listView;
+
+    @OnClick(R.id.switch_button)
+    void onClickSwitch(View v) {
+        //发送通知出去
+        switchUserType();
+    }
 
     @Nullable
     @Override
@@ -122,13 +136,13 @@ public class MeFragment extends BaseFragment {
     }
 
     void loadData() {
-        HttpClient.post("Traveler/GetTailor",getParams() ,null ,new HttpClient.HttpCallback<Object>() {
+        HttpClient.post("Traveler/GetTailor", getParams(), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
-                JSONObject jsonObject = (JSONObject)obj;
+                JSONObject jsonObject = (JSONObject) obj;
                 JSONObject userInfo = jsonObject.getJSONObject("Model");
-                userAvatar.setImageURI(ImgUtil.getCDNUrlWithPathStr((String)userInfo.get("MembPhoto")));
-                userNickName.setText((String)userInfo.get("MembNickname"));
+                userAvatar.setImageURI(ImgUtil.getCDNUrlWithPathStr((String) userInfo.get("MembPhoto")));
+                userNickName.setText((String) userInfo.get("MembNickname"));
             }
 
             @Override
@@ -148,6 +162,22 @@ public class MeFragment extends BaseFragment {
             params = null;
         }
         return params;
+    }
+
+    private void switchUserType() {
+        TTSwitchTailorEvent event = new TTSwitchTailorEvent();
+        TTApplication app = (TTApplication)getActivity().getApplication();
+        if (app.getCurrentUserType() == 1) {
+            event.from = 1;
+            event.to = 2;
+            app.setCurrentUserType(2);
+        } else {
+            event.from = 2;
+            event.to = 1;
+            app.setCurrentUserType(1);
+
+        }
+        EventBus.getDefault().post(event);
     }
 
 }

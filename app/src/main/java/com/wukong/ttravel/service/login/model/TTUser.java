@@ -69,6 +69,7 @@ public class TTUser {
         userAvatar = jsonObject.getString("MembPhoto");
         nickName = jsonObject.getString("MembNickname");
         userRealName = jsonObject.getString("MembName");
+        password = jsonObject.getString("MembPassword");
         gender = jsonObject.getInteger("MembSex");
         hometown = jsonObject.getString("MembHometown");
         userRealName = jsonObject.getString("MembName");

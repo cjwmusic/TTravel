@@ -127,7 +127,8 @@ public class MeDetailActivity extends BaseActivity{
             @Override
             public void onSuccess(Object obj) {
                 JSONObject data = (JSONObject) obj;
-                showSuccess(data.getString("Message"));
+//                showSuccess(data.getString("Message"));
+                dismissSvHud();
 
                 JSONObject userModel = data.getJSONObject("Model");
                 TTUser user = new TTUser(userModel);
@@ -147,7 +148,7 @@ public class MeDetailActivity extends BaseActivity{
         JSONObject params;
         try {
             params = new JSONObject();
-            params.put("strCode", Helper.sharedHelper().getCurrentUer().getUserId());
+            params.put("strCode", Helper.sharedHelper().getCurrentUer().getUserPhoneNumber());
             params.put("strPassword", Helper.sharedHelper().getCurrentUer().getPassword());
         } catch (Exception e) {
             params = null;
