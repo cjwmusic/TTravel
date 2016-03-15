@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="183dp"
+    android:background="@color/write_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp">
+            <TextView
+                android:id="@+id/service_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:textSize="14sp"
+                android:textColor="@color/grayLevel6"
+                android:text="西湖一圈陪跑"
+                />
+
+            <TextView
+                android:id="@+id/service_status"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_alignParentRight="true"
+                android:textSize="14sp"
+                android:textColor="@color/grayLevel3"
+                android:gravity="center_vertical"
+                android:layout_marginRight="15dp"
+                android:text="已上架"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_alignBottom="@id/service_name"
+                android:background="@color/gray_bg"/>
+            
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="93dp">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/service_image"
+            android:layout_width="63dp"
+            android:layout_height="63dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"/>
+        
+        <TextView
+            android:id="@+id/price_label"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/service_image"
+            android:layout_marginLeft="15dp"
+            android:layout_height="14dp"
+            android:textSize="13sp"
+            android:textColor="@color/yellowLevel1"
+            android:layout_marginTop="20dp"
+            android:text="99元"
+            />
+
+        <TextView
+            android:id="@+id/service_unit"
+            android:layout_width="wrap_content"
+            android:layout_toRightOf="@id/price_label"
+            android:layout_height="14dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel3"
+            android:layout_marginTop="20dp"
+            android:text="每人每天"
+            />
+
+        <TextView
+            android:id="@+id/servie_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/service_image"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/price_label"
+            android:textSize="13sp"
+            android:maxLines="2"
+            android:textColor="@color/grayLevel3"
+            android:layout_marginTop="13dp"
+            android:layout_marginRight="15dp"
+            android:text="跑步锻炼是一种很牛比的锻炼方式,跑步锻炼是一种很牛比的锻炼方式，是一种很牛比的锻炼方式"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/update_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:textSize="13sp"
+            android:textColor="@color/grayLevel3"
+            android:text="更新时间：2015-12-08 16:01"/>
+        
+        <Button
+            android:id="@+id/right_button1"
+            android:layout_width="70dp"
+            android:layout_height="27dp"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel3"
+            android:textSize="13sp"
+            android:background="@drawable/button_style3"
+            android:text="编辑"/>
+
+        <Button
+            android:id="@+id/right_button2"
+            android:layout_width="70dp"
+            android:layout_height="27dp"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/right_button1"
+            android:layout_centerVertical="true"
+            android:textColor="@color/grayLevel3"
+            android:textSize="13sp"
+            android:background="@drawable/button_style3"
+            android:text="下架"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

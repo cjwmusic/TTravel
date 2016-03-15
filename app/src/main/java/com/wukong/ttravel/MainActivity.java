@@ -16,6 +16,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Utils.Constant;
 import com.wukong.ttravel.Utils.Helper;
+import com.wukong.ttravel.service.custom.fragment.CustomServiceFragment;
 import com.wukong.ttravel.service.discover.fragment.DiscoverFragment;
 import com.wukong.ttravel.service.home.fragment.HomeFragment;
 import com.wukong.ttravel.service.message.fragment.ContactListFragment;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mTabManager = new TabManager(this, mTabHost, android.R.id.tabcontent);
         mTabHost.setup();
         //设置tabItem
-        mTabManager.addTab(getTabSpecView("home", R.layout.tab_item_home), HomeFragment.class, null);
+        mTabManager.addTab(getTabSpecView("home", R.layout.tab_item_home), CustomServiceFragment.class, null);
         mTabManager.addTab(getTabSpecView("discover", R.layout.tab_item_discover), DiscoverFragment.class, null);
         mTabManager.addTab(getTabSpecView("order", R.layout.tab_item_order), OrderFragment.class, null);
         mTabManager.addTab(getTabSpecView("message", R.layout.tab_item_message), ContactListFragment.class, null);
