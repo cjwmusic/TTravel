@@ -6,12 +6,15 @@ import android.view.View;
 
 import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.Router.Router;
+import com.wukong.ttravel.Events.LoginOutEvent;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.my.adapter.BlackListAdapter;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.pedant.SweetAlert.SweetAlertDialog;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by wukong on 3/15/16.
@@ -58,7 +61,25 @@ public class SettingActivity extends BaseActivity {
     }
     @OnClick(R.id.setting_logout)
     void onClickLoginLout(View v) {
+        new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
+                .setTitleText("退出登录")
+                .setContentText("您将退出登录~")
+                .setCancelText("确认")
+                .setConfirmText("取消")
+                .showCancelButton(true)
+                .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sDialog) {
+                        sDialog.cancel();
+                        //清除本地用户Id信息
+                        Helper.sharedHelper().clearAllUserInfo();
+                        LoginOutEvent event = new LoginOutEvent();
+                        EventBus.getDefault().post(event);
 
+                        finish();
+                    }
+                })
+                .show();
 
     }
 

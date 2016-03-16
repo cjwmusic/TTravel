@@ -21,6 +21,7 @@ import com.wukong.ttravel.Base.TTApplication;
 import com.wukong.ttravel.Base.im.ImTypeMessageEvent;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
+import com.wukong.ttravel.Events.LoginSuccessEvent;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
@@ -73,6 +74,9 @@ public class MeFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+        EventBus.getDefault().register(this);
+
+
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_me, container, false);
 
@@ -103,7 +107,7 @@ public class MeFragment extends BaseFragment {
             listView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
 
-            loadData();
+            loadData(Helper.sharedHelper().getUserId());
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
@@ -145,8 +149,8 @@ public class MeFragment extends BaseFragment {
         listData.add(item4);
     }
 
-    void loadData() {
-        HttpClient.post("Traveler/GetTailor", getParams(), null, new HttpClient.HttpCallback<Object>() {
+    void loadData(String userId) {
+        HttpClient.post("Traveler/GetTailor", getParams(userId), null, new HttpClient.HttpCallback<Object>() {
             @Override
             public void onSuccess(Object obj) {
                 JSONObject jsonObject = (JSONObject) obj;
@@ -163,11 +167,11 @@ public class MeFragment extends BaseFragment {
 
     }
 
-    private JSONObject getParams() {
+    private JSONObject getParams(String userId) {
         JSONObject params;
         try {
             params = new JSONObject();
-            params.put("strTailorID", Helper.sharedHelper().getUserId());
+            params.put("strTailorID", userId);
         } catch (Exception e) {
             params = null;
         }
@@ -194,4 +198,9 @@ public class MeFragment extends BaseFragment {
         EventBus.getDefault().post(event);
     }
 
+    public void onEvent(LoginSuccessEvent event) {
+        if (event.userId != null) {
+            loadData(event.userId);
+        }
+    }
 }

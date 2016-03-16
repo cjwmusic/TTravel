@@ -27,6 +27,11 @@ android {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -54,5 +59,8 @@ dependencies {
     compile 'com.kaopiz:kprogresshud:1.0.5'
     compile 'com.bigkoo:svprogresshud:1.0.2'
     compile project(':SlidingMenu')
+
+    compile 'cn.pedant.sweetalert:library:1.3'
+
 
 }

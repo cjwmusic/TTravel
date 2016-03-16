@@ -65,7 +65,12 @@ public class CommentListAdapter extends BaseAdapter {
 
         Comment comment = mData.get(position);
         holder.avatar.setImageURI(ImgUtil.getCDNUrlWithPathStr(comment.getAvatar()));
-        holder.nickName.setText(comment.getNickName());
+        if (comment.getNickName() == null || comment.getAvatar().length() == 0) {
+            holder.nickName.setText("未设置昵称");
+        } else {
+            holder.nickName.setText(comment.getNickName());
+        }
+
         holder.commentContent.setText(comment.getCommentContent());
         holder.commentTime.setText(comment.getCommentTime());
         //TODO stars

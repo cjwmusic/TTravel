@@ -1,5 +1,6 @@
 package com.wukong.ttravel.service.home.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.adapter.TailorLinesListAdapter;
 import com.wukong.ttravel.service.home.model.TailorDetail;
 import com.wukong.ttravel.service.home.model.TailorLine;
+import com.wukong.ttravel.service.trade.activity.PreBookTailorActivity;
 
 import java.util.ArrayList;
 
@@ -97,8 +99,14 @@ public class TailorIndexActivity extends BaseActivity{
     void OnClickBookButton(View v) {
         if (tailorId != null && listData != null) {
             //登录验证
-            if (Helper.sharedHelper().getUserId().length() > 0) {
-                Router.sharedRouter().open("preBook/" + tailorId);
+            if (Helper.sharedHelper().getUserId().length() > 0 && (mTailorDetail != null)) {
+                Intent intent = new Intent();
+                intent.putExtra("tailorId", tailorId);
+                intent.putExtra("avatar", mTailorDetail.getMembPhoto());
+                intent.putExtra("nick", mTailorDetail.getMembNickName());
+                intent.setClass(this, PreBookTailorActivity.class);
+                startActivity(intent);
+
             } else {
                 Router.sharedRouter().open("doLogin");
             }
@@ -108,6 +116,7 @@ public class TailorIndexActivity extends BaseActivity{
     private String tailorId;
     private TailorLinesListAdapter adapter;
     private ArrayList<TailorLine> listData;
+    private TailorDetail mTailorDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,6 +159,7 @@ public class TailorIndexActivity extends BaseActivity{
                 JSONObject model = data.getJSONObject("Model");
                 if (model != null) {
                     TailorDetail tailorDetail = new TailorDetail(model);
+                    mTailorDetail = tailorDetail;
                     updateUI(tailorDetail);
                 }
             }

@@ -19,7 +19,8 @@
             android:layout_marginTop="15dp"
             android:layout_marginLeft="15dp"
             fresco:roundedCornerRadius="18dp"
-            fresco:roundAsCircle="true" />
+            fresco:roundAsCircle="true"
+            fresco:placeholderImage="@drawable/avatar_default"/>
 
         <!--昵称-->
         <TextView

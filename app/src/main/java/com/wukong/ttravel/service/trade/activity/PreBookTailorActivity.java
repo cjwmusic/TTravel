@@ -39,6 +39,7 @@ import com.wukong.ttravel.widget.KCalendar;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,19 +140,37 @@ public class PreBookTailorActivity extends BaseActivity {
             return;
         }
 
-        TradeInfo tradeInfo = new TradeInfo();
-        tradeInfo.setStrTravelerID(Helper.sharedHelper().getUserId());
-        tradeInfo.setStrTailorID(tailorId);
-        tradeInfo.setStrProductID(selectedLine.getProdID());
-        tradeInfo.setDatBegin(startTime);
-        tradeInfo.setDatEnd(stopTime);
-        tradeInfo.setDecPrice(selectedLine.getProdPrice());
-        tradeInfo.setIntPeople(peopleCount);
-//        tradeInfo.setDecMoney(); //设置总价
-        tradeInfo.setStrLinkman(userName);
-        tradeInfo.setStrPhone(phoneNumber);
-        //全部验证通过，提交订单
-        postTrade(tradeInfo);
+
+        Intent intent = new Intent();
+        intent.putExtra("strTailorID", tailorId);
+        intent.putExtra("strProductID", selectedLine.getProdID());
+        intent.putExtra("datBegin", startTime);
+        intent.putExtra("datEnd", stopTime);
+        intent.putExtra("decPrice", selectedLine.getProdPrice());
+        intent.putExtra("intPeople",peopleCount);
+        intent.putExtra("strLinkman", userName);
+        intent.putExtra("strPhone", phoneNumber);
+
+        intent.putExtra("tailorAvatar", tailorAvatar);
+        intent.putExtra("tailorNick",tailorNick);
+
+
+        intent.setClass(this, PreBookConfirmActivity.class);
+        startActivity(intent);
+
+//        TradeInfo tradeInfo = new TradeInfo();
+//        tradeInfo.setStrTravelerID(Helper.sharedHelper().getUserId());
+//        tradeInfo.setStrTailorID(tailorId);
+//        tradeInfo.setStrProductID(selectedLine.getProdID());
+//        tradeInfo.setDatBegin(startTime);
+//        tradeInfo.setDatEnd(stopTime);
+//        tradeInfo.setDecPrice(selectedLine.getProdPrice());
+//        tradeInfo.setIntPeople(peopleCount);
+////        tradeInfo.setDecMoney(); //设置总价
+//        tradeInfo.setStrLinkman(userName);
+//        tradeInfo.setStrPhone(phoneNumber);
+//        //全部验证通过，提交订单
+//        postTrade(tradeInfo);
     }
 
     //负责处理点击空白处,键盘退出
@@ -167,14 +186,22 @@ public class PreBookTailorActivity extends BaseActivity {
 
     private String tailorId;
     private TailorLine selectedLine;
+    private String tailorAvatar;
+    private String tailorNick;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prebook_tailor);
         ButterKnife.bind(this);
+
         Bundle extras = getIntent().getExtras();
         tailorId = extras.getString("tailorId");
+        tailorAvatar = extras.getString("avatar");
+        tailorNick = extras.getString("nick");
+
+
         listData = new ArrayList<>();
         adapter = new PreBookAdapter(this, listData);
         listView.setAdapter(adapter);
@@ -326,6 +353,23 @@ public class PreBookTailorActivity extends BaseActivity {
             params = null;
         }
         return params;
+    }
+
+
+    long getDurationDays(String startTime,String endTime) {
+
+        try {
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+            Long c = sf.parse(endTime).getTime()-sf.parse(startTime).getTime();
+            long d = c/1000/60/60/24;//天
+            System.out.println(d+"天");
+            return d;
+
+        } catch (Exception e) {
+
+        }
+
+        return 0;
     }
 
 

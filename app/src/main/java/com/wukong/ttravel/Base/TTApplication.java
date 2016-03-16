@@ -180,7 +180,7 @@ public class TTApplication  extends Application{
         //伴客线路详情页
         Router.sharedRouter().map("lineDetail/:id/:title", TailorLineDetailActivity.class);
 
-        Router.sharedRouter().map("preBook/:tailorId",PreBookTailorActivity.class);
+        Router.sharedRouter().map("preBook/:tailorId/:avatar/:nick",PreBookTailorActivity.class);
         Router.sharedRouter().map("cityList", CityListActivity.class);
         Router.sharedRouter().map("cityTailorList/:id/:title", CityTailorListActivity.class);
 

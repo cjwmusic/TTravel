@@ -16,6 +16,7 @@ import com.avos.avoscloud.im.v2.AVIMMessage;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.im.ImTypeMessageEvent;
+import com.wukong.ttravel.Events.LoginOutEvent;
 import com.wukong.ttravel.Utils.Constant;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.custom.fragment.CustomServiceFragment;
@@ -200,4 +201,12 @@ public class MainActivity extends AppCompatActivity {
         mTabHost.setCurrentTab(0);
 
     }
+
+    public void onEvent(LoginOutEvent event) {
+        slidingMenu.toggle();
+        mTabHost.setCurrentTab(0);
+
+    }
+
+
 }

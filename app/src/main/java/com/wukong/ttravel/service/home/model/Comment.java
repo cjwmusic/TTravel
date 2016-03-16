@@ -2,6 +2,8 @@ package com.wukong.ttravel.service.home.model;
 
 import com.alibaba.fastjson.JSONObject;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created by wukong on 2/20/16.
  */
@@ -22,7 +24,15 @@ public class Comment {
         nickName = jsonObject.getString("TravelerNickname");
         avatar = jsonObject.getString("TravelerPhoto");
         commentContent = jsonObject.getString("EvalContent");
+
+        //时间转换
         commentTime = jsonObject.getString("EvalCreate");
+        int startIndex =  commentTime.indexOf("(");
+        int endIndex = commentTime.indexOf(")");
+        String subString = commentTime.substring(startIndex + 1, endIndex);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        commentTime = sdf.format(Long.parseLong(subString));
+
         score = jsonObject.getInteger("EvalScore");
     }
 

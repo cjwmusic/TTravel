@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wukong.ttravel">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -18,6 +19,7 @@
 
 
     <application
+        tools:replace="android:icon"
         android:name=".Base.TTApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -90,6 +92,7 @@
         <activity android:name=".service.trade.activity.PreBookTailorActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".service.home.activity.CityListActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".service.home.activity.CityTailorListActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".service.trade.activity.PreBookConfirmActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
         <service android:name="com.avos.avoscloud.PushService"/>

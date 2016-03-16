@@ -37,6 +37,7 @@ public class TTAboutActivity extends BaseActivity {
         WebSettings settings = webView.getSettings();
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
+        settings.setTextZoom(100);
 
         Bundle extras = getIntent().getExtras();
         strDocumentID = extras.getString("id");

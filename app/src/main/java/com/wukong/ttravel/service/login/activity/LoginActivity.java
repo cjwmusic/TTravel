@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.wukong.ttravel.Base.BaseActivity;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
+import com.wukong.ttravel.Events.LoginSuccessEvent;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.Constant;
 import com.wukong.ttravel.Utils.Helper;
@@ -23,6 +24,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by wukong on 3/9/16.
@@ -123,6 +125,11 @@ public class LoginActivity extends BaseActivity {
         storeUserProfile(user);
 
         //2 登录LeanCloud
+
+        //3 发通知出去
+        LoginSuccessEvent event = new LoginSuccessEvent();
+        event.userId = user.getUserId();
+        EventBus.getDefault().post(event);
 
 
         //3 finish

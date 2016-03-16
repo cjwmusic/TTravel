@@ -28,7 +28,7 @@
         android:layout_marginTop="12dp"
         android:textAlignment="center"
         android:layout_marginBottom="24dp"
-        android:text="张小梦"/>
+        android:text="未登录"/>
 
 
 </LinearLayout>
