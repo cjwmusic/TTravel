@@ -32,11 +32,11 @@
     <color name="black">#000000</color>
     <color name="blackLevel1">#a0000000</color>
     <color name="blackLevel2">#333333</color>
+    <color name="blackBottomButtom_bg">#2f2f2f</color>
 
     <color name="yellowLevel1">#fea201</color>
     <color name="yellowLevel2">#f8a30c</color>
 
     <color name="blue_love">#0078f3</color>
-
 
 </resources>

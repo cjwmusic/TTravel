@@ -28,13 +28,13 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by wukong on 2/19/16.
  */
 public class TailorIndexActivity extends BaseActivity{
 
-    private String tailorId;
 
     @Bind(R.id.album_image)
     SimpleDraweeView albumImageView;
@@ -92,6 +92,14 @@ public class TailorIndexActivity extends BaseActivity{
     @Bind(R.id.linesList)
     MyListView linesListView;
 
+    @OnClick(R.id.book_button)
+    void OnClickBokkButton(View v) {
+        if (tailorId != null && listData != null) {
+            Router.sharedRouter().open("preBook/" + tailorId);
+        }
+    }
+
+    private String tailorId;
     private TailorLinesListAdapter adapter;
     private ArrayList<TailorLine> listData;
 

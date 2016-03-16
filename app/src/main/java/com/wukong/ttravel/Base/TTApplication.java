@@ -30,6 +30,7 @@ import com.wukong.ttravel.service.login.activity.LoginActivity;
 import com.wukong.ttravel.service.login.activity.ResetPasswordActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
 import com.wukong.ttravel.service.my.activity.TTAboutActivity;
+import com.wukong.ttravel.service.trade.activity.PreBookTailorActivity;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -171,6 +172,8 @@ public class TTApplication  extends Application{
         Router.sharedRouter().map("chat/:receiverId", ChatActivity.class);
         //伴客线路详情页
         Router.sharedRouter().map("lineDetail/:id/:title", TailorLineDetailActivity.class);
+
+        Router.sharedRouter().map("preBook/:tailorId",PreBookTailorActivity.class);
 
     }
 
