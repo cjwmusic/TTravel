@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.model.DestCity;
@@ -96,6 +97,15 @@ public class TailorsAdapter extends BaseAdapter{
             //设置搜索栏是否显示
             if (destCity.isFirst()) {
                 cityViewHolder.searchBar.setVisibility(View.VISIBLE);
+                //绑定点击监听事件
+                cityViewHolder.searchBar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //跳转到城市列表页面
+                        Router.sharedRouter().open("cityList");
+                    }
+                });
+
             } else {
                 cityViewHolder.searchBar.setVisibility(View.GONE);
             }

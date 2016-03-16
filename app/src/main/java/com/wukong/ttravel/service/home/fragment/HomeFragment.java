@@ -89,7 +89,6 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 //            mSwipeRefreshLayout.setVisibility(View.GONE);
 //            mSwipeRefreshLayout.setEnabled(false);
             mSwipeRefreshLayout.setOnRefreshListener(this);
-            showProgressDialog("正在加载...");
             //请求数据
             loadData();
         }
@@ -99,16 +98,14 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
 
     private void loadData() {
 
-
+        showLoading("正在加载...");
         HttpClient.post("Traveler/GetHotDestination", getParams(0), null, new HttpClient.HttpCallback<Object>() {
 
             @Override
             public void onSuccess(Object obj) {
 
                 listData.clear();
-
-                hideProgressDialog();
-
+                dismissSvHud();;
                 JSONObject data = (JSONObject)obj;
 
                 JSONArray jsonArray = (JSONArray)data.get("List");
@@ -173,8 +170,8 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         JSONObject params;
         try {
             params = new JSONObject();
-            params.put("intCount", 10);
-            params.put("intBegin", page * 10);
+            params.put("intCount", 20);
+            params.put("intBegin", page * 20);
         } catch (Exception e) {
             params = null;
         }

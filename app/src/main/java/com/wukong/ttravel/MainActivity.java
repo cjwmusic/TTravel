@@ -2,7 +2,6 @@ package com.wukong.ttravel;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -47,12 +46,8 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         setContentView(R.layout.activity_main);
         initTabHost();
-
         //slidingMenu
         initSlideMenu();
-
-
-
     }
 
 
@@ -123,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     Router.sharedRouter().openFormResult("doLogin", MESSAGE_SINGIN_REQUEST_CODE, MainActivity.this);
                 }
-
-
             }
         });
 

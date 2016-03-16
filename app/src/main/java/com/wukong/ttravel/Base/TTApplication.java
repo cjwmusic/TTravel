@@ -16,17 +16,21 @@ import com.avos.avoscloud.im.v2.callback.AVIMConversationCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationCreatedCallback;
 import com.avos.avoscloud.im.v2.callback.AVIMConversationQueryCallback;
 import com.avos.avoscloud.im.v2.messages.AVIMTextMessage;
+import com.avos.avoscloud.okhttp.Route;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.im.AVImClientManager;
 import com.wukong.ttravel.Base.im.MessageHandler;
 import com.wukong.ttravel.Base.request.HttpClient;
+import com.wukong.ttravel.MainActivity;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
+import com.wukong.ttravel.service.home.activity.CityListActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 import com.wukong.ttravel.service.home.activity.TailorLineDetailActivity;
 import com.wukong.ttravel.service.login.activity.LoginActivity;
+import com.wukong.ttravel.service.login.activity.RegisterActivity;
 import com.wukong.ttravel.service.login.activity.ResetPasswordActivity;
 import com.wukong.ttravel.service.message.activity.ChatActivity;
 import com.wukong.ttravel.service.my.activity.TTAboutActivity;
@@ -160,12 +164,14 @@ public class TTApplication  extends Application{
         /**
          * Maps
          */
+        Router.sharedRouter().map("main", MainActivity.class);
         Router.sharedRouter().map("tailorIndex/:id", TailorIndexActivity.class);
         Router.sharedRouter().map("commentList/:id", CommentListActivity.class);
         Router.sharedRouter().map("discoverDetail/:id/:title", DiscoverDetailActivity.class);
         Router.sharedRouter().map("about/:id/:title", TTAboutActivity.class);
 
         Router.sharedRouter().map("doLogin", LoginActivity.class);
+        Router.sharedRouter().map("doRegister", RegisterActivity.class);
         Router.sharedRouter().map("resetPassword", ResetPasswordActivity.class);
 
         //聊天界面
@@ -174,6 +180,7 @@ public class TTApplication  extends Application{
         Router.sharedRouter().map("lineDetail/:id/:title", TailorLineDetailActivity.class);
 
         Router.sharedRouter().map("preBook/:tailorId",PreBookTailorActivity.class);
+        Router.sharedRouter().map("cityList", CityListActivity.class);
 
     }
 

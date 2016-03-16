@@ -1,0 +1,51 @@
+package com.wukong.ttravel.Base;
+
+import android.support.v4.view.PagerAdapter;
+import android.util.SparseArray;
+import android.view.View;
+import android.view.ViewGroup;
+
+/**
+ * Created by fufeng on 15/11/8.
+ */
+public abstract class BasePageAdapter extends PagerAdapter {
+    protected SparseArray<View> mViews;
+
+    public BasePageAdapter() {
+        mViews = new SparseArray<View>();
+    }
+
+    @Override
+    public boolean isViewFromObject(View view, Object object) {
+        return view == object;
+    }
+
+    @Override
+    public Object instantiateItem(ViewGroup container, int position) {
+        View view = mViews.get(position);
+        if (view == null) {
+            view = newView(position);
+            mViews.put(position, view);
+        }
+        container.addView(view);
+        return view;
+    }
+
+    public abstract View newView(int position);
+
+    public void notifyUpdateView(int position) {
+        View view = updateView(mViews.get(position), position);
+        mViews.put(position, view);
+        notifyDataSetChanged();
+    }
+
+    public View updateView(View view, int position) {
+        return view;
+    }
+
+    @Override
+    public void destroyItem(ViewGroup container, int position, Object object) {
+        container.removeView(mViews.get(position));
+    }
+
+}

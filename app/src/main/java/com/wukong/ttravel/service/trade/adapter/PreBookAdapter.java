@@ -78,7 +78,6 @@ public class PreBookAdapter extends BaseAdapter {
         TextView lineName;
         TextView lineNumber;
         Button chooseButton;
-
     }
 
     public int getCurrentSelectedIndex() {

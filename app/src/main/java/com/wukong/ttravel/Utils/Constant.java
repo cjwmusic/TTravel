@@ -10,6 +10,12 @@ public class Constant {
 
 
     /**
+     * Boolean 类型SharePreference值，判断是否首次打开应用
+     */
+    public static final String SP_FIRST_START = "first_start";
+
+
+    /**
      * 缓存在SharedPreferences中用户信息
      */
     public static final String USER_ID = "userid";
