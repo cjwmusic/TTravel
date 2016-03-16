@@ -19,6 +19,7 @@ import com.wukong.ttravel.Base.request.HttpError;
 import com.wukong.ttravel.Base.views.MyListView;
 import com.wukong.ttravel.R;
 import com.wukong.ttravel.Utils.CommonUtil;
+import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.ImgUtil;
 import com.wukong.ttravel.service.home.adapter.TailorLinesListAdapter;
 import com.wukong.ttravel.service.home.model.TailorDetail;
@@ -93,9 +94,14 @@ public class TailorIndexActivity extends BaseActivity{
     MyListView linesListView;
 
     @OnClick(R.id.book_button)
-    void OnClickBokkButton(View v) {
+    void OnClickBookButton(View v) {
         if (tailorId != null && listData != null) {
-            Router.sharedRouter().open("preBook/" + tailorId);
+            //登录验证
+            if (Helper.sharedHelper().getUserId().length() > 0) {
+                Router.sharedRouter().open("preBook/" + tailorId);
+            } else {
+                Router.sharedRouter().open("doLogin");
+            }
         }
     }
 

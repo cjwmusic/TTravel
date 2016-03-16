@@ -1,13 +1,24 @@
 package com.wukong.ttravel.service.trade.activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
@@ -21,12 +32,15 @@ import com.wukong.ttravel.Utils.CommonUtil;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.Utils.MessageUtils;
 import com.wukong.ttravel.service.home.model.TailorLine;
+import com.wukong.ttravel.service.test.CanlendarTestActivity;
 import com.wukong.ttravel.service.trade.adapter.PreBookAdapter;
 import com.wukong.ttravel.service.trade.model.TradeInfo;
+import com.wukong.ttravel.widget.KCalendar;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -53,24 +67,45 @@ public class PreBookTailorActivity extends BaseActivity {
     @Bind(R.id.pay_count)
     TextView payCountTv;
 
-
     private String startTime;
     private String stopTime;
     private String peopleCount;
     private String userName;
     private String phoneNumber;
 
+    String date = null;// 设置默认选中的日期  格式为 “2014-04-05” 标准DATE格式
+
+    @OnClick(R.id.start_time)
+    void onClickStartTime(View v) {
+        new PopupWindows(PreBookTailorActivity.this, startTimeTv, new OnCalendarSelectedListener() {
+            @Override
+            public void onCalendarSelected(String dateFormat) {
+                startTimeTv.setText(dateFormat);
+                startTime = dateFormat;
+            }
+        });
+    }
+
+    @OnClick(R.id.stop_time)
+    void onClickStopTime(View v) {
+        new PopupWindows(PreBookTailorActivity.this, stopTimeTv, new OnCalendarSelectedListener() {
+            @Override
+            public void onCalendarSelected(String dateFormat) {
+                stopTimeTv.setText(dateFormat);
+                stopTime = dateFormat;
+            }
+        });
+    }
+
+
     @OnClick(R.id.book_button)
     void onClick(View v) {
         ///TODO
         // 先判断用户是否登录
 
-
-
-
         //非空校验
         //线路选择验证
-        if (seletedLine == null) {
+        if (selectedLine == null) {
             MessageUtils.showToastCenter("请选择线路");
             return;
         }
@@ -107,10 +142,10 @@ public class PreBookTailorActivity extends BaseActivity {
         TradeInfo tradeInfo = new TradeInfo();
         tradeInfo.setStrTravelerID(Helper.sharedHelper().getUserId());
         tradeInfo.setStrTailorID(tailorId);
-        tradeInfo.setStrProductID(seletedLine.getProdID());
+        tradeInfo.setStrProductID(selectedLine.getProdID());
         tradeInfo.setDatBegin(startTime);
         tradeInfo.setDatEnd(stopTime);
-        tradeInfo.setDecPrice(seletedLine.getProdPrice());
+        tradeInfo.setDecPrice(selectedLine.getProdPrice());
         tradeInfo.setIntPeople(peopleCount);
 //        tradeInfo.setDecMoney(); //设置总价
         tradeInfo.setStrLinkman(userName);
@@ -131,7 +166,7 @@ public class PreBookTailorActivity extends BaseActivity {
     private ArrayList<TailorLine> listData;
 
     private String tailorId;
-    private TailorLine seletedLine;
+    private TailorLine selectedLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,19 +178,71 @@ public class PreBookTailorActivity extends BaseActivity {
         listData = new ArrayList<>();
         adapter = new PreBookAdapter(this, listData);
         listView.setAdapter(adapter);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("点击了---------");
                 TailorLine line = adapter.getItem(position);
+                selectedLine = line;
+                if (peopleCount != null) {
+                    try {
+
+                        Float price = Float.parseFloat(line.getProdPrice());
+                        Float count = Float.parseFloat(peopleCount);
+                        Float payAmount = price * count;
+                        payCountTv.setText("" + payAmount);
+
+                    } catch (Exception e) {
+                        showInfo("请输入正确的格式");
+
+                    }
+                }
+
                 adapter.setCurrentSelectedIndex(position);
                 adapter.notifyDataSetChanged();
             }
         });
 
-        loadLinesData();
-    }
+        peopleCountEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String string = peopleCountEt.getText().toString().trim();
+                if (string.length() > 0) {
+                    peopleCount = string;
+
+                    if (selectedLine != null && string.length() > 0) {
+
+                        try {
+                            String evPrice = selectedLine.getProdPrice();
+                            Float price = Float.parseFloat(evPrice);
+                            Float count = Float.parseFloat(string);
+                            Float payAmount = price * count;
+                            payCountTv.setText("" + payAmount);
+                        } catch (Exception e) {
+                            showInfo("请输入正确的格式");
+                        }
+
+                    }
+                }
+
+            }
+        });
+
+        loadLinesData();
+
+        userNameEt.setText(Helper.sharedHelper().getCurrentUer().getNickName());
+        phoneEt.setText(Helper.sharedHelper().getCurrentUer().getUserPhoneNumber());
+    }
 
     private void loadLinesData() {
 
@@ -239,6 +326,129 @@ public class PreBookTailorActivity extends BaseActivity {
             params = null;
         }
         return params;
+    }
+
+
+    public interface OnCalendarSelectedListener {
+        void onCalendarSelected(String dateFormat);
+    }
+
+
+    public class PopupWindows extends PopupWindow {
+
+        public PopupWindows(Context mContext, View parent, final OnCalendarSelectedListener listener) {
+
+            View view = View.inflate(mContext, R.layout.popupwindow_calendar,
+                    null);
+            view.startAnimation(AnimationUtils.loadAnimation(mContext,
+                    R.anim.fade_in));
+            LinearLayout ll_popup = (LinearLayout) view
+                    .findViewById(R.id.ll_popup);
+            ll_popup.startAnimation(AnimationUtils.loadAnimation(mContext,
+                    R.anim.push_bottom_in_1));
+
+            setWidth(ViewGroup.LayoutParams.FILL_PARENT);
+            setHeight(ViewGroup.LayoutParams.FILL_PARENT);
+            setBackgroundDrawable(new BitmapDrawable());
+            setFocusable(true);
+            setOutsideTouchable(true);
+            setContentView(view);
+            showAtLocation(parent, Gravity.BOTTOM, 0, 0);
+            update();
+
+            final TextView popupwindow_calendar_month = (TextView) view
+                    .findViewById(R.id.popupwindow_calendar_month);
+            final KCalendar calendar = (KCalendar) view
+                    .findViewById(R.id.popupwindow_calendar);
+            Button popupwindow_calendar_bt_enter = (Button) view
+                    .findViewById(R.id.popupwindow_calendar_bt_enter);
+
+            popupwindow_calendar_month.setText(calendar.getCalendarYear() + "年"
+                    + calendar.getCalendarMonth() + "月");
+
+            if (null != date) {
+
+                int years = Integer.parseInt(date.substring(0,
+                        date.indexOf("-")));
+                int month = Integer.parseInt(date.substring(
+                        date.indexOf("-") + 1, date.lastIndexOf("-")));
+                popupwindow_calendar_month.setText(years + "年" + month + "月");
+
+                calendar.showCalendar(years, month);
+                calendar.setCalendarDayBgColor(new String[]{date},R.drawable.calendar_date_focused);
+//                calendar.setCalendarDayBgColor(date,R.drawable.calendar_date_focused);
+            }
+
+            List<String> list = new ArrayList<String>(); //设置标记列表
+            list.add("2014-04-01");
+            list.add("2014-04-02");
+            calendar.addMarks(list, 0);
+
+            //监听所选中的日期
+            calendar.setOnCalendarClickListener(new KCalendar.OnCalendarClickListener() {
+
+                public void onCalendarClick(int row, int col, String dateFormat) {
+                    int month = Integer.parseInt(dateFormat.substring(
+                            dateFormat.indexOf("-") + 1,
+                            dateFormat.lastIndexOf("-")));
+
+                    if (calendar.getCalendarMonth() - month == 1//跨年跳转
+                            || calendar.getCalendarMonth() - month == -11) {
+                        calendar.lastMonth();
+
+                    } else if (month - calendar.getCalendarMonth() == 1 //跨年跳转
+                            || month - calendar.getCalendarMonth() == -11) {
+                        calendar.nextMonth();
+
+                    } else {
+                        calendar.removeAllBgColor();
+                        calendar.setCalendarDayBgColor(new String[]{dateFormat}, R.drawable.calendar_date_focused);
+//                        calendar.setCalendarDayBgColor(dateFormat, R.drawable.calendar_date_focused);
+                        listener.onCalendarSelected(dateFormat);
+                    }
+                }
+            });
+
+            //监听当前月份
+            calendar.setOnCalendarDateChangedListener(new KCalendar.OnCalendarDateChangedListener() {
+                public void onCalendarDateChanged(int year, int month) {
+                    popupwindow_calendar_month
+                            .setText(year + "年" + month + "月");
+                }
+            });
+
+            //上月监听按钮
+            RelativeLayout popupwindow_calendar_last_month = (RelativeLayout) view
+                    .findViewById(R.id.popupwindow_calendar_last_month);
+            popupwindow_calendar_last_month
+                    .setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            calendar.lastMonth();
+                        }
+
+                    });
+
+            //下月监听按钮
+            RelativeLayout popupwindow_calendar_next_month = (RelativeLayout) view
+                    .findViewById(R.id.popupwindow_calendar_next_month);
+            popupwindow_calendar_next_month
+                    .setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            calendar.nextMonth();
+                        }
+                    });
+
+            //关闭窗口
+            popupwindow_calendar_bt_enter
+                    .setOnClickListener(new View.OnClickListener() {
+
+                        public void onClick(View v) {
+                            dismiss();
+                        }
+                    });
+        }
     }
 
 }

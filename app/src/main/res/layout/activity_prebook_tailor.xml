@@ -86,7 +86,7 @@
             android:layout_toRightOf="@id/tv1"
             android:textColor="@color/write_bg"
             android:textSize="16sp"
-            android:text="567"
+            android:text=""
             />
 
         <Button
@@ -241,6 +241,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:hint=""
+                android:inputType="number"
                 android:textColorHint="@color/grayLevel3"
                 />
 

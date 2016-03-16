@@ -27,8 +27,6 @@ public class Constant {
     public static final String USER_TX_PASSWORD = "userTxPassword";
     public static final String USER_PAY_PASSWORD = "userPayPassword";
 
-
-
     public static final int REQUEST_CODE_SIGNIN = 300;
 
 }
