@@ -26,6 +26,7 @@ import com.wukong.ttravel.MainActivity;
 import com.wukong.ttravel.Utils.Helper;
 import com.wukong.ttravel.service.discover.activity.DiscoverDetailActivity;
 import com.wukong.ttravel.service.home.activity.CityListActivity;
+import com.wukong.ttravel.service.home.activity.CityTailorListActivity;
 import com.wukong.ttravel.service.home.activity.CommentListActivity;
 import com.wukong.ttravel.service.home.activity.TailorIndexActivity;
 import com.wukong.ttravel.service.home.activity.TailorLineDetailActivity;
@@ -181,6 +182,7 @@ public class TTApplication  extends Application{
 
         Router.sharedRouter().map("preBook/:tailorId",PreBookTailorActivity.class);
         Router.sharedRouter().map("cityList", CityListActivity.class);
+        Router.sharedRouter().map("cityTailorList/:id/:title", CityTailorListActivity.class);
 
     }
 

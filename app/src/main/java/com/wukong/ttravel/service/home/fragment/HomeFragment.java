@@ -80,7 +80,8 @@ public class HomeFragment extends BaseFragment implements SwipeRefreshLayout.OnR
                         Router.sharedRouter().open("tailorIndex/" + tailor.getMembID());
 //                        Router.sharedRouter().open("chat/" + "20160119001");
                     } else { //点击的是城市item
-
+                        DestCity city = (DestCity)listData.get(position);
+                        Router.sharedRouter().open("cityTailorList/" + city.getDestId() + "/" + city.getDestCityName());
                     }
                 }
             });
