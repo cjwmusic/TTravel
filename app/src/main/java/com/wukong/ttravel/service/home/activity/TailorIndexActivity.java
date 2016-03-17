@@ -1,19 +1,23 @@
 package com.wukong.ttravel.service.home.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.wukong.ttravel.Base.BaseActivity;
+import com.wukong.ttravel.Base.BasePageAdapter;
 import com.wukong.ttravel.Base.Router.Router;
 import com.wukong.ttravel.Base.request.HttpClient;
 import com.wukong.ttravel.Base.request.HttpError;
@@ -27,20 +31,21 @@ import com.wukong.ttravel.service.home.model.TailorDetail;
 import com.wukong.ttravel.service.home.model.TailorLine;
 import com.wukong.ttravel.service.trade.activity.PreBookTailorActivity;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import viewpagerindicator.CirclePageIndicator;
 
 /**
  * Created by wukong on 2/19/16.
  */
 public class TailorIndexActivity extends BaseActivity{
 
-
-    @Bind(R.id.album_image)
-    SimpleDraweeView albumImageView;
 
     @Bind(R.id.nick_name)
     TextView nickName;
@@ -66,7 +71,6 @@ public class TailorIndexActivity extends BaseActivity{
     //starts
     @Bind(R.id.stars)
     LinearLayout stars;
-
     @Bind(R.id.start0)
     ImageView start0;
     @Bind(R.id.start1)
@@ -95,6 +99,12 @@ public class TailorIndexActivity extends BaseActivity{
     @Bind(R.id.linesList)
     MyListView linesListView;
 
+    @Bind(R.id.scrollView)
+    ScrollView scrollView;
+
+    @Bind(R.id.album_count)
+    TextView imagesCountLabel;
+
     @OnClick(R.id.book_button)
     void OnClickBookButton(View v) {
         if (tailorId != null && listData != null) {
@@ -118,6 +128,16 @@ public class TailorIndexActivity extends BaseActivity{
     private ArrayList<TailorLine> listData;
     private TailorDetail mTailorDetail;
 
+    @Bind(R.id.album_image)
+    ViewPager tutorialViewpager;
+    @Bind(R.id.indicator)
+    CirclePageIndicator indicator;
+
+    private TutorialPageAdapter tutorialPageAdapter;
+
+    ArrayList<String> headerImages;
+    private int imagesCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,9 +147,31 @@ public class TailorIndexActivity extends BaseActivity{
         Bundle extras = getIntent().getExtras();
         tailorId = extras.getString("id");
 
+        //顶部的轮播图片
+        headerImages = new ArrayList<>();
+        tutorialPageAdapter = new TutorialPageAdapter(headerImages);
+        tutorialViewpager.setAdapter(tutorialPageAdapter);
+        indicator.setViewPager(tutorialViewpager);
+        indicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            @Override
+            public void onPageScrolled(int i, float v, int i2) {
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                //在此处处理
+                imagesCountLabel.setText((i+1) + "/" + imagesCount);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
+
         showLoading("正在加载");
         loadData();
-
         initLines();
     }
 
@@ -185,6 +227,7 @@ public class TailorIndexActivity extends BaseActivity{
                         listData.add(line);
                     }
                     adapter.notifyDataSetChanged();
+                    scrollView.scrollTo(0, 0);
                 }
             }
 
@@ -205,7 +248,6 @@ public class TailorIndexActivity extends BaseActivity{
         try {
             params = new JSONObject();
             params.put("strTailorID", tailorId);
-//            params.put("strTravelerID", userId);
         } catch (Exception e) {
             params = null;
         }
@@ -214,9 +256,19 @@ public class TailorIndexActivity extends BaseActivity{
 
     private void updateUI(TailorDetail tailorDetail) {
 
-        albumImageView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailorDetail.getMembAlbum()[0]));
-        avatarImageView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailorDetail.getMembPhoto()));
+        imagesCount = mTailorDetail.getMembAlbum().length;
+        if (imagesCount > 0) {
+            imagesCountLabel.setText("1/" + imagesCount);
+        }
 
+        String[] imgs = tailorDetail.getMembAlbum();
+        for (int i = 0; i < imgs.length; i ++) {
+            headerImages.add(imgs[i]);
+        }
+
+        tutorialPageAdapter.notifyDataSetChanged();
+
+        avatarImageView.setImageURI(ImgUtil.getCDNUrlWithPathStr(tailorDetail.getMembPhoto()));
         nickName.setText(tailorDetail.getMembNickName());
         homeTown.setText(tailorDetail.getMembHomeTown());
         job.setText(tailorDetail.getMembOccupation());
@@ -261,5 +313,28 @@ public class TailorIndexActivity extends BaseActivity{
         onBackPressed();
     }
 
+
+    public class TutorialPageAdapter extends BasePageAdapter {
+
+        private ArrayList<String> mData;
+
+        public TutorialPageAdapter(ArrayList<String> images) {
+            mData = images;
+        }
+
+        @Override
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public View newView(int position) {
+            SimpleDraweeView view = new SimpleDraweeView(TailorIndexActivity.this);
+            view.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            String imageUrl = mData.get(position);
+            view.setImageURI(ImgUtil.getCDNUrlWithPathStr(imageUrl));
+            return view;
+        }
+    }
 
 }

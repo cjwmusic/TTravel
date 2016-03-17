@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 /**
  * Created by wukong on 3/15/16.
  */
-public class BlackListActivity extends BaseActivity {
+public class BlackListActivity extends BaseActivity implements BlackListAdapter.CallBack{
 
     private BlackListAdapter adapter;
     private ArrayList<TTBlackItem> listData;
@@ -38,7 +38,7 @@ public class BlackListActivity extends BaseActivity {
         ButterKnife.bind(this);
 
         listData = new ArrayList<>();
-        adapter = new BlackListAdapter(this,listData);
+        adapter = new BlackListAdapter(this,listData,this);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -96,4 +96,25 @@ public class BlackListActivity extends BaseActivity {
         }
         return params;
     }
+
+    //点击了Cell上的删除按钮
+    @Override
+    public void onClickDeleteButton(View v) {
+        //得到位置
+        int position = (Integer)v.getTag();
+
+        TTBlackItem item =  listData.get(position);
+        System.out.println("要从黑名单中移除的用户Id为--> " + item.getUserId());
+        ///todo 发送删除请求到服务端
+        postRemoveBlack();
+    }
+
+
+    void postRemoveBlack() {
+        ///todo 从黑名单中移除
+
+    }
+
+
+
 }

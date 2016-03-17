@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +10,7 @@
     <include layout="@layout/action_bar"></include>
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,13 +19,33 @@
             android:layout_height="wrap_content">
 
             <!-- Album -->
-            <com.facebook.drawee.view.SimpleDraweeView
+            <!--<com.facebook.drawee.view.SimpleDraweeView-->
+                <!--android:id="@+id/album_image"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="240dp"-->
+                <!--fresco:placeholderImageScaleType="centerCrop"-->
+                <!--fresco:placeholderImage="@drawable/home_image_placeholder"-->
+                <!--/>-->
+            <android.support.v4.view.ViewPager
                 android:id="@+id/album_image"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
-                fresco:placeholderImageScaleType="centerCrop"
-                fresco:placeholderImage="@drawable/home_image_placeholder"
-                />
+                android:layout_height="240dp" />
+
+            <viewpagerindicator.CirclePageIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="15dp"
+                app:centered="true"
+                app:fillColor="@color/brand"
+                app:pageColor="@color/write_bg"
+                app:radius="3dp"
+                app:strokeColor="@color/grayLevel1"
+                android:visibility="gone"
+                app:strokeWidth="1px" />
 
             <TextView
                 android:id="@+id/album_count"
@@ -36,7 +58,7 @@
                 android:textSize="12dp"
                 android:gravity="center"
                 android:textColor="@color/write_bg"
-                android:text="1/5"/>
+                android:text="0/0"/>
             
             
 

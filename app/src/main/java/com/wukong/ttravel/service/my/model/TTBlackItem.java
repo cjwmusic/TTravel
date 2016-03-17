@@ -9,11 +9,15 @@ import com.alibaba.fastjson.JSONObject;
 public class TTBlackItem {
     String userAvatar;
     String userNick;
+    String userId;
+    String linkId;
 
     public TTBlackItem(JSONObject jsonObject) {
         ///TO DO
         userNick = jsonObject.getString("TailorNickname");
         userAvatar = jsonObject.getString("TailorPhoto");
+        userId = jsonObject.getString("LinkTailor");
+        linkId = jsonObject.getString("LinkID");
 
     }
 
@@ -31,5 +35,21 @@ public class TTBlackItem {
 
     public void setUserNick(String userNick) {
         this.userNick = userNick;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getLinkId() {
+        return linkId;
+    }
+
+    public void setLinkId(String linkId) {
+        this.linkId = linkId;
     }
 }

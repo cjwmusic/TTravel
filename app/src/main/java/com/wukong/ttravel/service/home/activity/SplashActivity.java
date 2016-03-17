@@ -129,8 +129,6 @@ public class SplashActivity extends BaseActivity {
         }
     }
 
-
-
     public class TutorialPageAdapter extends BasePageAdapter {
         private int[] images = new int[]{
                 R.mipmap.start_page_1,
