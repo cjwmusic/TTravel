@@ -11,6 +11,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.squareup.okhttp.CacheControl;
 import com.squareup.okhttp.Callback;
 import com.squareup.okhttp.Headers;
+import com.squareup.okhttp.MediaType;
 import com.squareup.okhttp.MultipartBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -35,6 +36,7 @@ public class HttpClient {
 
     public static final String BASE_URL_RELEASE = "http://App.traveltailor.cn/";
     public static final String BASE_URL_LOGIN = "http://AppLogin.traveltailor.cn/";
+    public static final String BASE_URL_UPLOAD = "http://Upload.traveltailor.cn/";
     public static final String BASE_URL_PRE = "";
     public static final String BASE_URL_DEV = "";
 
@@ -110,6 +112,27 @@ public class HttpClient {
         okHttpClient.newCall(request).enqueue(getHttpResponseHandler(path, callback, clazz));
     }
 
+
+    public static <T, P> void uploadImage(String path, String imagePath, Class<T> clazz, HttpCallback<P> callback) {
+
+        String reqUrl = getUploadAbsoluteUrl(path);
+        MultipartBuilder builder = new MultipartBuilder().type(MultipartBuilder.FORM);
+        //根据文件路径创建File对象
+        File file = new File(imagePath);
+        //创建请求体
+        builder.addFormDataPart("filPicture",file.getName(),RequestBody.create(MediaType.parse("image/*"),file));
+
+        RequestBody body = builder.build();
+
+        Request request = new Request.Builder().
+                url(reqUrl).
+                post(body).
+                headers(genHeaders(reqUrl)).
+                cacheControl(CacheControl.FORCE_NETWORK).
+                build();
+
+        okHttpClient.newCall(request).enqueue(getHttpResponseHandler(path, callback, clazz));
+    }
 
 
     public static <T, P> void post(String path, JSONObject params, Class<T> clazz, HttpCallback<P> callback) {
@@ -363,6 +386,10 @@ public class HttpClient {
 //        }
         return BASE_URL_RELEASE + path;
 
+    }
+
+    public static String getUploadAbsoluteUrl(String path) {
+        return BASE_URL_UPLOAD + path;
     }
 
     /**

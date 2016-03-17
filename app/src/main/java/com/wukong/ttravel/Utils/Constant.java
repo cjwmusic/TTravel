@@ -29,4 +29,7 @@ public class Constant {
 
     public static final int REQUEST_CODE_SIGNIN = 300;
 
+    public static final int REQUEST_CODE_PICK_PHOTO = 10;
+
+
 }

@@ -1,20 +1,24 @@
 package com.wukong.ttravel.service.custom.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 
 import com.wukong.ttravel.Base.BaseFragment;
 import com.wukong.ttravel.Base.views.SlidingTabLayout;
 import com.wukong.ttravel.R;
+import com.wukong.ttravel.service.custom.activity.PublishServiceActivity;
 import com.wukong.ttravel.service.order.adapter.FragmentTabAdapter;
 import com.wukong.ttravel.service.order.fragment.OrderListFragment;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by wukong on 3/15/16.
@@ -30,6 +34,14 @@ public class CustomServiceFragment extends BaseFragment implements ViewPager.OnP
     SlidingTabLayout categorySlidingTab;
     @Bind(R.id.categoryTabViewPager)
     ViewPager categoryTabViewPager;
+
+    @OnClick(R.id.publish_button)
+    void onClickPublishButton(View v) {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), PublishServiceActivity.class);
+        startActivity(intent);
+    }
+
 
     @Nullable
     @Override

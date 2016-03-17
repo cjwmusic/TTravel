@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <!-- titleBar-->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/action_bar_height"
+        android:background="@color/write_bg">
+
+        <LinearLayout
+            android:id="@+id/action_bar_button_back"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:onClick="handleBack"
+            >
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/close"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/action_bar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/blackLevel2"
+            android:text="发布定制"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/publish_button"
+            android:layout_width="60dp"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/yellowLevel2"
+            android:text="发布"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignBottom="@id/action_bar_button_right"
+            android:background="@color/gray_bg"/>
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/title_et"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentRight="true"
+        android:background="@android:color/white"
+        android:singleLine="true"
+        android:textSize="13sp"
+        android:textColor="@color/grayLevel6"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:hint="请输入标题，最长15字"
+        android:textColorHint="@color/grayLevel3"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_bg"/>
+
+    <EditText
+        android:id="@+id/desc_et"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:gravity="top"
+        android:background="@android:color/white"
+        android:textSize="13sp"
+        android:textColor="@color/grayLevel6"
+        android:paddingTop="15dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:hint="请输入描述信息"
+        android:textColorHint="@color/grayLevel3"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/write_bg"
+        >
+        <Button
+            android:id="@+id/add_image_button"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:text="+"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginBottom="15dp"
+            android:textColor="@color/graylevel7"
+            android:background="@drawable/button_style6"
+            android:textSize="50dp"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/write_bg"
+        android:layout_marginTop="10dp">
+
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textSize="14sp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/grayLevel1"
+            android:text="设置价格"/>
+
+        <ImageView
+            android:id="@+id/arrow3"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/narrow_gray"
+            />
+
+
+        <TextView
+            android:id="@+id/unit_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:layout_toLeftOf="@id/arrow3"
+            android:layout_marginRight="10dp"
+            android:textColor="@color/grayLevel1"
+            android:textSize="13sp"
+            android:text="每人每天"
+            />
+
+        <EditText
+            android:id="@+id/price_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/tv1"
+            android:layout_toLeftOf="@id/unit_tv"
+            android:textSize="13sp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="15dp"
+            android:hint="请输入价格"
+            android:background="@android:color/white"
+            />
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+
+
+
+</LinearLayout>

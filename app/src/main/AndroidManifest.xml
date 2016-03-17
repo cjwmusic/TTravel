@@ -94,6 +94,17 @@
         <activity android:name=".service.home.activity.CityTailorListActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".service.trade.activity.PreBookConfirmActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
 
+        <activity android:name=".service.custom.activity.PublishServiceActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
+        <activity
+            android:name="com.foamtrace.photopicker.PhotoPickerActivity"
+            android:theme="@style/PhotoPickerTheme"
+            android:configChanges="orientation|screenSize"/>
+
+        <activity android:name="com.foamtrace.photopicker.PhotoPreviewActivity"
+            android:theme="@style/PhotoPickerTheme"/>
+
         <!-- 实时通信模块、推送（若使用该功能，需添加以下声明）START -->
         <service android:name="com.avos.avoscloud.PushService"/>
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver">

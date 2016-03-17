@@ -24,6 +24,8 @@
     <color name="grayLevel5">#f2f2f2</color>
     <color name="grayLevel6">#3d3c38</color>
 
+    <color name="graylevel7">#cccccc</color>
+
 
 
     <color name="tab_bg">#fafafa</color>
@@ -38,5 +40,6 @@
     <color name="yellowLevel2">#f8a30c</color>
 
     <color name="blue_love">#0078f3</color>
+    <color name="photopicker_background">#181819</color>
 
 </resources>
